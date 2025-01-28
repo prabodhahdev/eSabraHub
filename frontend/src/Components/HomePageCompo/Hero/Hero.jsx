@@ -45,7 +45,7 @@ const Hero = () => {
       </div>
       
       <h1>Connecting <span className="dynamic-word">{currentWord}</span></h1>
-<p>eSabraHub connects university students, staff, and local villagers.
+<p className='welcomtextpara'>eSabraHub connects university students, staff, and local villagers.
   <br /> Discover detailed accommodation options, reliable transport services, <br />
   attractive places, nearby medical centers, and the best food shops. 
   <br />Share posts and engage in real-time chat with our vibrant community.

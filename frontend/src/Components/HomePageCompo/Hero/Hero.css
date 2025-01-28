@@ -45,6 +45,9 @@
 .welcomeText  img{
     width: 60px;
 }
+.welcomtextpara{
+    text-align: left;
+}
 .dynamic-word {
     font-weight: 900;
     font-size: 45px;

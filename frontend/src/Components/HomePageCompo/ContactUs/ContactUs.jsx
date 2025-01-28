@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import {toast} from 'react-toastify'
 import './ContactUs.css';
+import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faLocationDot, faPhone } from '@fortawesome/free-solid-svg-icons';
 
@@ -7,13 +9,32 @@ const ContactUs = () => {
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission
-    console.log('Full Name:', fullName);
-    console.log('Email:', email);
-    console.log('Message:', message);
+    setError('');
+    setSuccess('');
+
+    try {
+      const response = await axios.post('http://localhost:5000/api/contact/msgsent', {
+        fullName,
+        email,
+        message,
+      });
+
+      if (response.status === 201) {
+        setSuccess('Message sent successfully!');
+        setFullName('');
+        setEmail('');
+        setMessage('');
+        toast.success("Message sent successfully")
+      }
+    } catch (error) {
+      setError('Failed to send message. Please try again later.');
+      console.error('Error sending message:', error);
+    }
   };
 
   return (
@@ -55,6 +76,8 @@ const ContactUs = () => {
       <div className="contact-us-rightside">
         <form onSubmit={handleSubmit} className="contact-us-rightside-form">
           <h2>Send Message</h2>
+          {error && <div className="error">{error}</div>}
+          {success && <div className="success">{success}</div>}
           <div className="contact-us-rightside-inputBox">
             <input
               type="text"
@@ -66,7 +89,7 @@ const ContactUs = () => {
           </div>
           <div className="contact-us-rightside-inputBox">
             <input
-              type="text"
+              type="email" // Change input type to email for validation
               required="required"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
