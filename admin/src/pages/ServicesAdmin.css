@@ -1,0 +1,35 @@
+.servicesTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+  }
+  
+  .servicesTable th,
+  .servicesTable td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .servicesTable th {
+    background-color: #f4f4f4;
+  }
+  
+  .servicesTable img {
+    width: 100px;
+    height: auto;
+  }
+  
+  .deleteButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #dd7413; /* You can use your preferred color */
+    font-size: 1.2em;
+    transition: color 0.3s ease;
+  }
+  
+  .deleteButton:hover {
+    color: #b74430; /* Change color on hover */
+  }
+  

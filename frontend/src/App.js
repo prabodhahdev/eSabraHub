@@ -14,8 +14,13 @@ import MedicinePage from './Pages/Services/MedicinePage';
 import TransportPage from './Pages/Services/TransportPage';
 import AboutUs from './Components/HomePageCompo/AboutUs/AboutUs';
 import Footer from './Components/HomePageCompo/Footer/Footer';
-import ProtectedRoute from './Components/ProtectedRoute/ProtectedRoute'; // Import ProtectedRoute
-import { AuthProvider } from './Context/AuthContext'; // Import AuthProvider
+import ProtectedRoute from './Components/ProtectedRoute/ProtectedRoute'; 
+import { AuthProvider } from './Context/AuthContext'; 
+import Profile from './Components/Login_Post_Profile/Profile/Profile';
+import ProfilePage from './Pages/ProfilePage';
+import ServiceDetails from './Components/ServicesCompo/ServiceDetails/ServiceDetails';
+import ChatDisplay from './Components/ChatAppCompo/Chat Display/ChatDisplay';
+import Chatbot from './Pages/Chatbot/Chatbot';
 
 function App() {
   return (
@@ -29,7 +34,8 @@ function App() {
               <Route path="/login" element={<LoginSignupPage />} />
               
               <Route element={<ProtectedRoute />}>
-                <Route path="/chat" element={<ChatPage />} />
+                <Route path="/chat/:userId" element={<ChatPage />} />
+                <Route path="/chat/:conversationId" element={<ChatDisplay />} />
                 <Route path="/posts" element={<PostPage />} />
               </Route>
 
@@ -40,7 +46,11 @@ function App() {
               <Route path="/medicine" element={<MedicinePage />} />
               <Route path="/places" element={<AttractivePlacesPage />} />
               <Route path="/about" element={<AboutUs />} />
+              <Route path="/profile" element={<ProfilePage />} />
+              <Route path="/details/:id" element={<ServiceDetails />} />
+
             </Routes>
+            <Chatbot/>
             <Footer />
           </div>
         </div>

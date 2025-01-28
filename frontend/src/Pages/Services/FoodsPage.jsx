@@ -1,9 +1,10 @@
 import React from 'react'
+import FoodCompo from '../../Components/ServicesCompo/FoodCompo'
 
 const FoodsPage = () => {
   return (
     <div>
-      food
+      <FoodCompo/>
     </div>
   )
 }
