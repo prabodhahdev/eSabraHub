@@ -6,7 +6,6 @@ const Accomodation = () => {
     <div>
       <AccomodationCompo/>
     </div>
-  
   )
 }
 

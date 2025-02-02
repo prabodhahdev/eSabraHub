@@ -1,0 +1,131 @@
+/* General styling for the CreatePost page */
+.create-post-container {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .create-post-title {
+    color: #dd7413;
+    text-align: center;
+    font-size: 24px;
+  }
+  
+  .create-post-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .create-post-label {
+    font-size: 17px;
+    font-weight: 600;
+    color: #dd7413;
+  }
+  
+  .create-post-input,
+  .create-post-select,
+  .create-post-textarea {
+      width: 100%;
+      padding: 10px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+  }
+  
+  /* Change the border color on focus */
+  .create-post-input:focus,
+  .create-post-select:focus,
+  .create-post-textarea:focus {
+      border-color: #dd7413; /* Change to your desired outline color */
+      outline: none; /* Remove the default outline */
+  }
+  
+  /* Label styling */
+  .create-post-label {
+      font-size: 17px;
+      font-weight: 600;
+      color: #dd7413;
+      border: 1px solid transparent; /* For space */
+      padding: 5px; /* Space around text */
+      transition: border-color 0.3s; /* Smooth transition */
+  }
+  
+  
+  .create-post-textarea {
+    height: 100px;
+  }
+  
+  .create-post-button {
+    padding: 10px 15px;
+    background-color: #141413; 
+    margin: 0 auto;
+    width: 200px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+  }
+  
+  .create-post-button:hover {
+    background-color: #dd7513a6;
+  }
+  
+  /* Photo preview styling */
+  .create-post-photo-preview {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  /* Service details section */
+  .create-post-details {
+    margin-top: 20px;
+  }
+  
+  .create-post-details p {
+    font-size: 1em;
+    line-height: 1.5;
+    margin: 10px 0;
+    color: gray;
+  }
+  
+  .create-post-details h3 {
+    margin-top: 20px;
+    font-size: 1.2em;
+    color: #a91e1e;
+  }
+  
+  /* Extra Posts section */
+  .extra-posts {
+    margin-top: 50px;
+  }
+  .photo-upload-area {
+    margin-top: 20px;
+    position: relative;
+  }
+  
+  .photo-preview {
+    width: 300px; 
+    height: 300px; 
+    border: none; 
+    display: flex;
+    margin: auto;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer; 
+  }
+  
+  .create-post-photo-preview {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover; /* Ensure the image covers the area nicely */
+  }
+  

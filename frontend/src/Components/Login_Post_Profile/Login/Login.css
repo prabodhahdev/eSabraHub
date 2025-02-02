@@ -1,4 +1,5 @@
 .auth-container {
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -77,3 +78,83 @@
 .login-bottom-part p span:hover {
   color: #dd7513;
 }
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(to right, #151414 , #dd7513b3), url('../../../Assets/hero-eSabraHub.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  
+  .auth-form {
+    background: #15141493;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+  }
+  
+  .auth-form h2 {
+    margin-bottom: 1rem;
+    text-align: center;
+    color: #dd7413;
+    font-weight: 900;
+    font-size: 28px;
+  }
+  
+  .auth-form input {
+    width: 100%;
+    padding: 0.75rem;
+    padding-left: 0;
+    margin: 0.5rem 0;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    border-bottom: 1px solid #dd7513d7;
+    color:antiquewhite;
+   
+  }
+ 
+  .auth-form button {
+    width: 100%;
+    margin-top: 10px;
+    padding: 0.75rem;
+    background-color:#dd7413 ;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .auth-form button:hover {
+    background-color: #dd7513b9;
+  }
+  
+  .auth-form p {
+    color: #ffffff8f;
+    margin-top: 20px;
+    margin-left: 10px;
+    font-size: 14px;
+  }
+  
+  .login-bottom-part {
+    margin-top: 20px;
+    text-align: center;
+    color: #ffffff8f;
+  }
+  
+  .login-bottom-part p span {
+    color: #f49335;
+    cursor: pointer;
+    text-decoration: underline;
+    transition: color 0.3s;
+  }
+  
+  .login-bottom-part p span:hover {
+    color: #dd7513;
+  }
+

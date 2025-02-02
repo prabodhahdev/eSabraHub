@@ -9,12 +9,20 @@ const serviceSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    coordinates: {
+        lat: {
+            type: Number, 
+        },
+        lng: {
+            type: Number, 
+        },
+    },
     description: {
         type: String,
         required: true,
     },
     mainPhoto: {
-        type: String,  // URL or file path for the main photo
+        type: String,  
     },
    
     serviceType: {
@@ -25,7 +33,8 @@ const serviceSchema = new mongoose.Schema({
     extraPhotos: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'ServiceExtraPhotos', // Reference to the ServiceExtraPhotos model
-    }
+    },
+    
 }, {
     timestamps: true
 });

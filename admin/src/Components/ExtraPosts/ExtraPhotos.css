@@ -1,0 +1,103 @@
+/* General styling for the ExtraPhotos component */
+.extra-photos-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff; /* White background for the container */
+}
+
+/* Title styling */
+.extra-photos-container h2 {
+    text-align: center;
+    color: #dd7413; /* Title color */
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+/* Form styling */
+.extra-photos-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Custom file input styling */
+.custom-file-upload {
+    display: flex;
+    align-items: center;
+    cursor: pointer; 
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+    padding: 10px;
+    justify-content: center; 
+    background-color: #f9f9f9; 
+}
+
+.custom-file-upload input[type="file"] {
+    display: none; /* Hide the default file input */
+}
+
+/* Upload icon styling (replace with an actual image) */
+.upload-icon {
+    background-image: url('../../Assets/cam.webp'); /* Path to your upload icon */
+    width: 30px; /* Adjust size as needed */
+    height: 30px; /* Adjust size as needed */
+    background-size: cover; /* Cover the entire area */
+    margin-right: 10px; /* Space between icon and text */
+}
+
+/* Button styling */
+.extra-photos-form button {
+    padding: 10px 15px;
+    background-color: #141413; 
+    width: 200px;
+    color: white; 
+    border: none;
+    border-radius: 5px; 
+    cursor: pointer; 
+    font-size: 14px;
+    transition: background-color 0.3s; 
+}
+
+/* Button hover effect */
+.extra-photos-form button:hover {
+    background-color: #dd7513c2; 
+    color: #f9f9f9;
+    
+}
+
+
+.preview-images-container {
+    display: flex; 
+    flex-wrap: wrap; 
+    margin-top: 10px; 
+    gap: 10px; 
+}
+
+.image-preview {
+    width: 100px; 
+    height: auto; 
+    max-height: 100px; 
+    object-fit: contain; 
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+}
+
+
+/* Message styling */
+.extra-photos-message {
+    text-align: center;
+    margin-top: 20px; 
+}
+
+
+/* Error message styling */
+.extra-photos-error {
+    color: red; 
+    text-align: center;
+}

@@ -7,8 +7,9 @@
     text-align: center;
     color: #888;
     font-size: 1.2rem;
-    border: 1px solid #ccc;
-    border-radius: 8px;
     padding: 20px;
+    background: linear-gradient(to right, #151414 , #06040277), url('../../../Assets/chat.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
   }
   

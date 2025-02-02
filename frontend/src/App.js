@@ -1,5 +1,8 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import NavBar from './Components/HomePageCompo/NavBar/NavBar';
 import HomePage from './Pages/HomePage';
 import LoginSignupPage from './Pages/LoginSignupPage';
@@ -16,47 +19,70 @@ import AboutUs from './Components/HomePageCompo/AboutUs/AboutUs';
 import Footer from './Components/HomePageCompo/Footer/Footer';
 import ProtectedRoute from './Components/ProtectedRoute/ProtectedRoute'; 
 import { AuthProvider } from './Context/AuthContext'; 
-import Profile from './Components/Login_Post_Profile/Profile/Profile';
 import ProfilePage from './Pages/ProfilePage';
 import ServiceDetails from './Components/ServicesCompo/ServiceDetails/ServiceDetails';
 import ChatDisplay from './Components/ChatAppCompo/Chat Display/ChatDisplay';
-import Chatbot from './Pages/Chatbot/Chatbot';
+import OthersProfilePage from './Pages/OthersProfilePage';
 
-function App() {
+const AppContent = () => {
+  // Custom hook to get the current path
+  const location = useLocation();
+
+  // Determine if the current route is for chat
+  const isChatRoute = location.pathname.startsWith('/chat');
+
   return (
-    <AuthProvider> {/* Wrap your application with AuthProvider */}
+    <div className='App'>
+      <NavBar />
+      <div className='main-content'>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/login" element={<LoginSignupPage />} />
+          
+          <Route element={<ProtectedRoute />}>
+            <Route path="/posts" element={<PostPage />} />
+          </Route>
+
+          {/* Unprotected routes */}
+          <Route path="/accommodation" element={<Accommodation />} />
+          <Route path="/transport" element={<TransportPage />} />
+          <Route path="/food" element={<FoodsPage />} />
+          <Route path="/medicine" element={<MedicinePage />} />
+          <Route path="/places" element={<AttractivePlacesPage />} />
+          <Route path="/about" element={<AboutUs />} />
+          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/profile/:userId" element={<OthersProfilePage />} />
+          <Route path="/details/:id" element={<ServiceDetails />} />
+          <Route element={<ProtectedRoute />}>
+            <Route path="/chat/:userId" element={<ChatPage />} />
+            <Route path="/chat/:conversationId" element={<ChatDisplay />} />
+          </Route>
+        </Routes>
+        {/* Conditionally render Footer */}
+        {!isChatRoute && <Footer />}
+      </div>
+      <ToastContainer 
+        className="toast-container"
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        closeOnClick
+        pauseOnHover
+        draggable
+        pauseOnFocusLoss
+      />
+    </div>
+  );
+};
+
+const App = () => {
+  return (
+    <AuthProvider>
       <Router>
-        <div className="App">
-          <NavBar />
-          <div className='main-content'>
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/login" element={<LoginSignupPage />} />
-              
-              <Route element={<ProtectedRoute />}>
-                <Route path="/chat/:userId" element={<ChatPage />} />
-                <Route path="/chat/:conversationId" element={<ChatDisplay />} />
-                <Route path="/posts" element={<PostPage />} />
-              </Route>
-
-              {/* Unprotected routes */}
-              <Route path="/accommodation" element={<Accommodation />} />
-              <Route path="/transport" element={<TransportPage />} />
-              <Route path="/food" element={<FoodsPage />} />
-              <Route path="/medicine" element={<MedicinePage />} />
-              <Route path="/places" element={<AttractivePlacesPage />} />
-              <Route path="/about" element={<AboutUs />} />
-              <Route path="/profile" element={<ProfilePage />} />
-              <Route path="/details/:id" element={<ServiceDetails />} />
-
-            </Routes>
-            <Chatbot/>
-            <Footer />
-          </div>
-        </div>
+        <AppContent /> {/* Wrap the content in the Router */}
       </Router>
     </AuthProvider>
   );
-}
+};
 
 export default App;

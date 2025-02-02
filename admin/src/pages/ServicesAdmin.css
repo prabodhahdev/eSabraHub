@@ -1,35 +1,179 @@
+/* ServicesAdmin.css */
+.table h1 {
+  text-align: center;
+  color: #dd7413;
+  font-size: 20px;
+  font-weight: 700;
+}
+
 .servicesTable {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+.servicesTable th,
+.servicesTable td {
+  text-align: left;
+  padding: 10px;
+  border: 1px solid #ddd; 
+  color: rgb(63, 60, 60);
+}
+
+.servicesTable th {
+  background-color: #151414; 
+  color: #e1ded2;
+  font-size: 14px;
+}
+
+.serviceImage {
+  width: 100px; 
+  height: auto;
+}
+
+.extraPhotoImage {
+  width: 100px; 
+  height: auto;
+  margin: 5px 0; 
+  object-fit: contain;
+}
+
+.description {
+  max-width: 450px;  
+  overflow-x: hidden;  
+  overflow-y: auto;    
+  white-space: normal;  
+  word-wrap: break-word; 
+}
+.location-admin{
+  white-space: normal;
+  word-wrap: break-word;
+}
+tbody tr {
+  transition: background-color 0.3s; 
+}
+
+tbody tr:hover {
+  background-color: #dd751392;
+}
+
+
+
+/* Add scrollbar to extra images if necessary */
+.extraPhotosContainer {
+  height: 250px; 
+  overflow-y: auto; /* Add vertical scrollbar if overflow */
+}
+
+/* Media Queries */
+@media (max-width: 1200px) {
+  .extraPhotosContainer{
+    max-height: 500px;
   }
-  
   .servicesTable th,
   .servicesTable td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
+    padding: 8px; /* Reduce padding for smaller screens */
   }
-  
+
   .servicesTable th {
-    background-color: #f4f4f4;
+    font-size: 12px; /* Smaller font size for headers */
+  }
+
+  .servicesTable td {
+    font-size: 12px; /* Smaller font size for table cells */
+  }
+
+
+  /* Make the table responsive */
+  .servicesTable {
+    display: block; /* Make table a block element */
+    overflow-x: auto; /* Enable horizontal scrolling */
+    white-space: nowrap; /* Prevent text wrapping */
+  }
+
+  /* Adjust description max width */
+  .description {
+    max-width: 100%; /* Allow full width on smaller screens */
+  }
+}
+
+@media (max-width: 800px) {
+  .servicesTable th,
+  .servicesTable td {
+    padding: 6px; /* Further reduce padding */
+  }
+
+  .servicesTable th {
+    font-size: 10px; /* Smaller font size for headers */
+  }
+
+  .servicesTable td {
+    font-size: 10px; /* Smaller font size for table cells */
+  }
+}
+@media (max-width: 700px) {
+  .table h1 {
+    font-size: 16px;
+  }
+  .servicesTable th,
+  .servicesTable td {
+    padding: 4px; /* Reduce padding for smaller screens */
+  }
+
+  .servicesTable th {
+    font-size: 9px; /* Smaller font size for headers */
+  }
+
+  .servicesTable td {
+    font-size: 9px; /* Smaller font size for table cells */
+  }
+  .serviceImage{
+    width: 95%;
+  }
+  .extraPhotoImage{
+    width: 95%;
   }
   
-  .servicesTable img {
-    width: 100px;
-    height: auto;
+ 
+
+}
+
+@media (max-width: 500px) {
+  .servicesTable {
+    font-size: 8px; /* Further reduce font size for very small screens */
+  }
+
+  .servicesTable th,
+  .servicesTable td {
+    padding: 2px; /* Further reduce padding for very small screens */
+  }
+}
+
+
+  
+
+
+
+  @media (max-width: 450px) {
+    .table h1 {
+      font-size: 14px;
+    }
+    .servicesTable {
+      font-size: 8px; /* Reduce font size for smaller screens */
+    }
+  
+    .servicesTable th,
+    .servicesTable td {
+      padding: 3px; /* Reduce padding */
+    }
+  
+    /* Hide the second (extra images) and fourth (location) columns */
+    .servicesTable th:nth-child(2),
+    .servicesTable td:nth-child(2),
+    .servicesTable th:nth-child(5),
+    .servicesTable td:nth-child(5) {
+      display: none;
+    }
   }
   
-  .deleteButton {
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: #dd7413; /* You can use your preferred color */
-    font-size: 1.2em;
-    transition: color 0.3s ease;
-  }
-  
-  .deleteButton:hover {
-    color: #b74430; /* Change color on hover */
-  }
-  
+

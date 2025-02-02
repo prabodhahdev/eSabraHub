@@ -1,0 +1,251 @@
+.edit-service-container {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.edit-service-container h2{
+    color: #dd7413;
+    text-align: center;
+    font-size: 24px;
+}
+
+.edit-service-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group  {
+    font-size: 17px;
+    font-weight: 600;
+    color: #dd7413;
+}
+
+/* Input, select, and textarea styling */
+.edit-service-input,
+.edit-service-select,
+.edit-service-textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+/* Change the border color on focus */
+.edit-service-input:focus,
+.edit-service-select:focus,
+.edit-service-textarea:focus {
+    border-color: #dd7413; /* Change to your desired outline color */
+    outline: none; /* Remove the default outline */
+}
+
+/* Label styling with transition */
+.edit-service-label {
+    border: 1px solid transparent; /* For space */
+    padding: 5px; /* Space around text */
+    transition: border-color 0.3s; /* Smooth transition */
+}
+
+.edit-service-textarea {
+    height: 100px;
+}
+
+.edit-service-button {
+    padding: 10px 15px;
+    background-color: #141413; 
+    color: white;
+    border: none;
+    width: 200px;
+    margin: 0 auto;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.edit-service-button:hover {
+    background-color: #dd7513a6;
+}
+
+/* Photo upload preview styling */
+.edit-service-photo-preview {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Service details section */
+.edit-service-details {
+    margin-top: 20px;
+}
+
+.edit-service-details p {
+    font-size: 1em;
+    line-height: 1.5;
+    margin: 10px 0;
+    color: gray;
+}
+
+.edit-service-details h3 {
+    margin-top: 20px;
+    font-size: 1.2em;
+    color: #a91e1e;
+}
+
+/* Extra Photos section */
+.extra-photos {
+    margin-top: 50px;
+}
+
+.photo-upload-area {
+    margin-top: 20px;
+    position: relative;
+}
+
+.photo-preview {
+    width: 300px; 
+    height: 300px; 
+    border: none; 
+    display: flex;
+    margin: auto;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer; /* Indicate that this area is clickable */
+}
+
+.edit-service-photo-preview {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover; /* Ensure the image covers the area nicely */
+}
+
+.image-preview {
+    max-width: 100px; /* Adjust as needed */
+    margin: 10px;
+    border: 1px solid #ccc; /* Optional styling */
+  }
+  
+  .extra-photos-preview {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  /* Mobile Devices (max-width: 600px) */
+@media (max-width: 600px) {
+    .edit-service-container {
+        padding: 10px; /* Reduce padding on smaller screens */
+    }
+
+    .edit-service-container h2 {
+        font-size: 20px; /* Smaller font size for headings */
+    }
+
+    .form-group {
+        font-size: 16px; /* Smaller font size for form labels */
+    }
+
+    .edit-service-input,
+    .edit-service-select,
+    .edit-service-textarea,
+    .edit-service-button {
+        font-size: 12px; /* Adjust input and button font size */
+    }
+
+    .edit-service-button {
+        padding: 8px 12px; /* Reduce button padding */
+    }
+
+    .edit-service-textarea {
+        height: 80px; /* Reduce height for the textarea */
+    }
+
+    .extra-photos-preview {
+        flex-direction: column; /* Stack extra photo previews vertically */
+        align-items: center; /* Center align the items */
+    }
+
+    .image-preview {
+        max-width: 80px; /* Smaller preview images */
+        margin: 5px; /* Reduce margin between previews */
+    }
+}
+
+
+  /* Mobile Devices (max-width: 600px) */
+@media (max-width: 600px) {
+    .edit-service-container {
+        padding: 10px; /* Reduce padding on smaller screens */
+    }
+
+    .edit-service-container h2 {
+        font-size: 20px; /* Smaller font size for headings */
+    }
+
+    .form-group {
+        font-size: 16px; /* Smaller font size for form labels */
+    }
+
+    .edit-service-input,
+    .edit-service-select,
+    .edit-service-textarea,
+    .edit-service-button {
+        font-size: 12px; /* Adjust input and button font size */
+    }
+
+    .edit-service-button {
+        padding: 8px 12px; /* Reduce button padding */
+    }
+
+    .edit-service-textarea {
+        height: 80px; /* Reduce height for the textarea */
+    }
+
+    .extra-photos-preview {
+        flex-direction: column; /* Stack extra photo previews vertically */
+        align-items: center; /* Center align the items */
+    }
+
+    .image-preview {
+        max-width: 80px; /* Smaller preview images */
+        margin: 5px; /* Reduce margin between previews */
+    }
+}
+
+/* Tablets (max-width: 900px) */
+@media (max-width: 900px) {
+    .edit-service-container {
+        padding: 15px; /* Slightly less padding */
+    }
+
+    .edit-service-container h2 {
+        font-size: 22px; /* Slightly smaller font size for headings */
+    }
+
+    .form-group {
+        font-size: 17px; /* Keep form labels at the same size */
+    }
+
+    .edit-service-input,
+    .edit-service-select,
+    .edit-service-textarea {
+        font-size: 13px; /* Adjust input and select font size */
+    }
+
+    .edit-service-button {
+        padding: 9px 14px; /* Adjust button padding */
+    }
+
+    .edit-service-textarea {
+        height: 90px; /* Adjust height for textarea */
+    }
+
+    .extra-photos-preview {
+        flex-direction: row; /* Align extra photo previews in a row */
+        justify-content: center; /* Center align the items */
+    }
+}

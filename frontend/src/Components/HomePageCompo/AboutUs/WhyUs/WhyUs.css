@@ -35,6 +35,9 @@
     display: flex;
     align-items: center;
 }
+.whyus-p{
+    text-align: left;
+}
 .aboutus-whyus-text p{
     color: #747c7c;
     font-size: 16px;

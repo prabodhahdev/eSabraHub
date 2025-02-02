@@ -1,0 +1,149 @@
+/* Posts.css */
+
+.posts-container {
+  margin: 55px auto 0;
+  max-width: 600px;
+}
+
+.post {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  background-color: #ffffff;
+  overflow: hidden;
+}
+
+.post-header {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+}
+
+.user-profile {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 12px;
+  cursor: pointer;
+  object-fit: cover;
+}
+
+.user-info {
+  flex: 1;
+}
+
+.user-name {
+  font-weight: bold;
+  margin-right: 8px;
+  color: #151414;
+}
+
+.follow-icon {
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.post-location {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.location-icon {
+  margin-right: 8px;
+  color: green;
+}
+
+.location-name {
+  font-weight: bold;
+  margin-right: 28px;
+  font-size: 14px;
+  color: green;
+}
+
+.text-post {
+  padding: 12px;
+}
+
+.text-content {
+  padding: 12px;
+  border-radius: 4px;
+}
+
+.media-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 8px 12px;
+  border-bottom: 1px solid #ddd;
+}
+
+.media-image {
+  width: 100%;
+  height: auto;
+  margin-bottom: 8px;
+}
+
+.media-video {
+  width: 100%;
+  height: auto;
+  margin-bottom: 8px;
+}
+
+.media-collage {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.media-gallery .post-content {
+  margin-bottom: 5px;
+  font-size: 12px;
+}
+
+.media-collage .media-image {
+  width: 33%;
+  height: auto;
+  margin-bottom: 8px;
+  margin-right: 2px;
+}
+
+.post-footer {
+  padding: 12px;
+  border-top: 1px solid #ddd;
+}
+
+.post-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.like-icon {
+  color: #000; /* Default color for non-liked state */
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.like-icon.liked {
+  color: #c7690c; /* Color when liked */
+}
+
+.comment-icon, .share-icon {
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.post-actions-icons-div {
+  display: flex;
+  align-items: center;
+}
+
+.post-actions-icons-div span {
+  margin-left: 5px;
+}
+
+.likes-count, .comments-count {
+  font-size: 14px;
+}

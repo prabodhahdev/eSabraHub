@@ -130,7 +130,6 @@ export const updateExtraPhotos = async (serviceId, extraPhotos) => {
   } catch (error) {
     console.error('Error updating extra photos:', error);
     throw error;
-    
   }
 };
 

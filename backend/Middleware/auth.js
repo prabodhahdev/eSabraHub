@@ -13,11 +13,9 @@ const authenticateUser = async (req, res, next) => {
 
     // Extract token from header
     const token = authHeader.split(' ')[1];
-    console.log("Token received:", token); // Log token for debugging
 
     // Verify token
     const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
-    console.log("Decoded token:", decodedToken); // Log decoded token for debugging
 
     // Find user by ID from decoded token
     const user = await User.findById(decodedToken.id);
@@ -27,7 +25,7 @@ const authenticateUser = async (req, res, next) => {
 
     // Attach user to request object
     req.user = user;
-    console.log("Authenticated user:", req.user); // Log user for debugging
+   
 
     next();
   } catch (error) {

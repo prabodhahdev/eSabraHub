@@ -1,0 +1,87 @@
+.create-post-nav {
+    padding: 5px;
+    position: fixed;
+    top: 49px;
+    width: 100%;
+    z-index: 999;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-bottom: 1px solid rgba(203, 199, 199, 0.762);
+}
+
+  .create-post-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+  }
+  
+  .create-post-nav li {
+    display: inline;
+    margin-right: 15px;
+    margin-left: 15px;
+  }
+  
+  .nav-button {
+    border: 1px solid #dd7413;
+    color: #dd7413;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    background-color: #ffffff;
+    align-items: center;
+    border-radius: 50%;
+    padding: 10px;
+  }
+  
+  .nav-button:hover {
+    color: #151414;
+    border: 1px solid #151414;
+  }
+  
+  .nav-button:focus {
+    outline: none;
+  }
+  
+  /* Your existing CSS with adjustments */
+  .modal {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: transparent;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 80vh;
+    width: 560px;
+  }
+  
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.75);
+    z-index: 1000; /* Ensure it appears above other content */
+  }
+
+  .close-modal-button {
+    background: none;
+    border: none;
+    padding: 5px;
+    font-weight: 900;
+    color: #dd7413;
+    border-radius: 5px;
+    font-size: 15px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+  }

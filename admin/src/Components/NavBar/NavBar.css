@@ -1,11 +1,12 @@
 /* Basic styles for the side navbar */
+
 .sidenav {
     height: 100%;
     width: 0;
     position: fixed;
     top: 0;
     left: 0;
-    background-color: #333;
+    background-color:#151414;
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 60px;
@@ -13,31 +14,37 @@
   }
   
   .sidenav a {
-    padding: 8px 8px 8px 32px;
+    padding: 8px 8px 28px 32px;
     text-decoration: none;
-    font-size: 25px;
-    color: #fff;
+    font-size: 17.5px;
+    color: #e1ded2;
     display: block;
     transition: 0.3s;
   }
   
   .sidenav a:hover {
-    color: #ddd;
+    color: #dd7413;
   }
   
   .sidenav .close-btn {
+    background-color: transparent;
+    border: none;
+    outline: none;
     position: absolute;
-    top: 0;
+    top: 15px;
     right: 25px;
     font-size: 36px;
     margin-left: 50px;
-    color: #fff;
+    color: #dd7413;
+    cursor: pointer;
+    display: none;
   }
   
   .open-btn {
     font-size: 20px;
-    background-color: #333;
-    color: #fff;
+    background-color: transparent;
+    color: #dd7413;
+    font-weight: 900;
     border: none;
     cursor: pointer;
     position: fixed;
@@ -45,10 +52,45 @@
     left: 10px;
     padding: 10px;
     z-index: 1001;
+    display: none;
   }
   
   .sidenav.open {
     width: 250px; /* Adjust width as needed */
   }
   
+  @media(max-width:1200px){
+    .open-btn{
+      display: block;
+    }
+    .sidenav .close-btn {
+     display: block;
+    }
+    .sidenav{
+      width: 0;
+    }
+    .sidenav.sidenav.open{
+      width: 250px;
+    }
+    
+  }
+  @media(max-width:700px){
+    .open-btn{
+      font-size: 16px;
+    }
+    .sidenav .close-btn {
+      font-size: 26px;
+     }
+     .sidenav a{
+      font-size: 16px;
+     }
+  }
+  @media(max-width:400px){
+    .open-btn{
+      font-size: 14px;
+    }
+    .sidenav a{
+      font-size: 14px;
+    }
+  }
   

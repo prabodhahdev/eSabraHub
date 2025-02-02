@@ -10,7 +10,7 @@ import { useAuth } from '../../../Context/AuthContext'; // Import useAuth
 const NavBar = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { authState, logout } = useAuth(); // Get authState and logout function
+  const { authState, logout } = useAuth(); 
   const [dropdown, setDropdown] = useState(false);
   const [targetSection, setTargetSection] = useState(null);
   const [sideNavOpen, setSideNavOpen] = useState(false);

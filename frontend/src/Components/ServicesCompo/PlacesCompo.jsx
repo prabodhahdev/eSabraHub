@@ -2,6 +2,8 @@
 
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {  faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 import { fetchServicesByType } from './Api';
 import { useNavigate } from 'react-router-dom';
 import './CommonServices.css';
@@ -34,16 +36,17 @@ const PlacesCompo = () => {
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <div>
-      <h1>Accommodation Services</h1>
+    <div className='frontend-services'>
+      <h1>Attractive Places</h1>
       {services.length > 0 ? (
-        <div className="services-list">
+          <div className="services-list">
           {services.map((service) => (
-            <div
+            <div className='service-list-gallery'>
+              <div
               key={service._id}
               className="service-item"
               onClick={() => handleServiceClick(service._id)}
-              style={{ cursor: 'pointer' }} // Optional: Add cursor pointer for better UX
+              style={{ cursor: 'pointer' }} 
             >
               <img
                 src={`http://localhost:5000/uploads/mainphotos/${service.mainPhoto}`}
@@ -51,7 +54,8 @@ const PlacesCompo = () => {
                 className="service-main-photo"
               />
               <h2>{service.name}</h2>
-              <p>Location: {service.location}</p>
+              < p className='services-location-icon-for-all'> <FontAwesomeIcon icon={faMapMarkerAlt} /> {service.location}</p>
+            </div>
             </div>
           ))}
         </div>

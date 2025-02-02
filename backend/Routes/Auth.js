@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { signup, login, getUserDetails, editUserDetails } = require('../Controllers/AuthController');
+const { signup, login, getUserDetails, editUserDetails, getUserDetailsOther } = require('../Controllers/AuthController');
 const authenticateUser = require('../Middleware/auth');
 const multer = require('multer');
 const path = require('path');
@@ -17,11 +17,17 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage });
 
+router.get('/verify', authenticateUser, (req, res) => {
+  // If this endpoint is hit, the token has already been validated
+  res.json({ user: req.user });
+});
+
 // Define routes
 router.post('/signup', signup);
 router.post('/login', login);
 router.get('/profile', authenticateUser, getUserDetails);
 router.put('/profile/edit', authenticateUser, upload.single('profileImage'), editUserDetails);
+router.get('/profile/:userId', getUserDetailsOther);
 
 
 

@@ -6,7 +6,7 @@ const serviceExtraPhotosSchema = new mongoose.Schema({
         ref: 'Service',
         required: true,
     },
-    extraPhotos: [String], // Array of photo file names
+    extraPhotos: [String], 
 }, {
     timestamps: true
 });

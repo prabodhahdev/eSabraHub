@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { fetchServicesByType, deleteService } from '../ServicesAPI/Api';
+import { fetchServicesByType, deleteService } from '../../../admin/src/ServicesAPI/Api';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import './ServicesAdmin.css'; // Import CSS file
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
-function Foods() {
+function Accommodation() {
     const [services, setServices] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -30,9 +32,11 @@ function Foods() {
         try {
             await deleteService(id);
             setServices((prevServices) => prevServices.filter(service => service._id !== id));
+            toast.success("Deleted Succussfully")
         } catch (error) {
             console.error('Error deleting service:', error);
             setError('Failed to delete service. Please try again.');
+            toast.error('Failed to delete service. Please try again.')
         }
     };
 
@@ -44,18 +48,18 @@ function Foods() {
     if (error) return <p>Error: {error}</p>;
 
     return (
-        <div>
-            <h1>Accommodation Services</h1>
+        <div className='table'>
+            <h1 >Food Shops</h1>
             {services.length > 0 ? (
                 <table className="servicesTable">
                     <thead>
                         <tr>
-                            <th>Main Image</th>
-                            <th>Extra Images</th>
-                            <th>Name</th>
-                            <th>Location</th>
-                            <th>Description</th>
-                            <th>Actions</th>
+                            <th style={{ width: '10%' }}>Main Image</th>
+                            <th style={{ width: '10%' }}>Extra Images</th>
+                            <th style={{ width: '10%' }}>Name</th>
+                            <th style={{ width: '12%' }}>Location</th>
+                            <th style={{ width: '28%' }}>Description</th>
+                            <th style={{ width: '5%' }}>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -70,14 +74,14 @@ function Foods() {
                                 </td>
                                 <td>
                                     {service.extraPhotos && service.extraPhotos.length > 0 ? (
-                                        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+                                        <div className='extraPhotosContainer' style={{ display: 'flex', flexDirection: 'column', maxHeight: '450px', overflowY: 'auto' }}>
                                             {service.extraPhotos.map((photo, index) => (
                                                 <img
                                                     key={index}
                                                     src={`http://localhost:5000/uploads/extrapics/${photo}`}
                                                     alt={`Extra ${index}`}
                                                     className="extraPhotoImage"
-                                                    style={{ width: '100px', height: 'auto', margin: '5px' }}
+                                                  
                                                 />
                                             ))}
                                         </div>
@@ -85,18 +89,18 @@ function Foods() {
                                         <p>No extra photos</p>
                                     )}
                                 </td>
-                                <td>{service.name}</td>
-                                <td>{service.location}</td>
-                                <td>{service.description}</td>
+                                <td className='location-admin'>{service.name}</td>
+                                <td className='location-admin'>{service.location}</td>
+                                <td className="description">{service.description}</td>
                                 <td>
                                     <FontAwesomeIcon
                                         icon={faTrash}
-                                        style={{ color: 'red', cursor: 'pointer' }}
+                                        style={{ color: 'tomato', cursor: 'pointer' }}
                                         onClick={() => handleDelete(service._id)}
                                     />
                                     <FontAwesomeIcon
                                         icon={faEdit}
-                                        style={{ color: 'blue', cursor: 'pointer', marginLeft: '10px' }}
+                                        style={{ color: 'Black', cursor: 'pointer', marginLeft: '10px' }}
                                         onClick={() => handleEdit(service._id)}
                                     />
                                 </td>
@@ -111,4 +115,4 @@ function Foods() {
     );
 }
 
-export default Foods;
+export default Accommodation;

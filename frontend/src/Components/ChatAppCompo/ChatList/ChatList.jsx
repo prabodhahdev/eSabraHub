@@ -7,6 +7,7 @@ const ChatList = ({ onSelectConversation, newMessage }) => {
   const { authState } = useAuth();
   const [conversations, setConversations] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [selectedChatId, setSelectedChatId] = useState(null); // State for selected chat
 
   useEffect(() => {
     const fetchChatList = async () => {
@@ -16,7 +17,7 @@ const ChatList = ({ onSelectConversation, newMessage }) => {
             Authorization: `Bearer ${authState.token}`,
           },
         });
-
+        console.log("Conversations fetched:", response.data); // Log conversations data
         setConversations(response.data);
       } catch (error) {
         console.error('Failed to fetch chat list:', error);
@@ -28,25 +29,27 @@ const ChatList = ({ onSelectConversation, newMessage }) => {
     if (authState.token) {
       fetchChatList();
     }
-  }, [authState.token]); // Only include authState.token as a dependency
+  }, [authState.token]);
 
-  // Handle new message updates
   useEffect(() => {
     if (newMessage) {
       const updateConversationList = (updatedConversation) => {
-        setConversations(prevConversations =>
-          prevConversations.map(conversation =>
-            conversation._id === updatedConversation._id ? updatedConversation : conversation
-          )
-        );
+        setConversations((prevConversations) => {
+          const filteredConversations = prevConversations.filter(
+            (conversation) => conversation._id !== updatedConversation._id
+          );
+          return [updatedConversation, ...filteredConversations];
+        });
       };
 
       updateConversationList(newMessage.conversation);
     }
-  }, [newMessage]); // Add newMessage as a dependency
+  }, [newMessage]);
 
   const getProfileImageUrl = (imagePath) => {
-    return imagePath ? `http://localhost:5000${imagePath}` : '/uploads/profiles/profile.jpg';
+    const url = imagePath ? `http://localhost:5000${imagePath}` : '/uploads/profiles/profile.jpg';
+    console.log("Generated Profile Image URL:", url); // Log the generated URL
+    return url;
   };
 
   if (loading) {
@@ -55,51 +58,55 @@ const ChatList = ({ onSelectConversation, newMessage }) => {
 
   return (
     <div className="chatlist-container">
-  <div className="chatlist-top">
-    <div className="chatlist-user-img">
-      <img
-        src={getProfileImageUrl(authState.user.profileImage)}
-        alt={authState.user.username}
-        onError={(e) => { e.target.src = '/uploads/profiles/profile.jpg'; }}
-      />
-    </div>
-    <div className="chatlist-user-content">
-      <p>{authState.user.username}</p>
-    </div>
-  </div>
-  {conversations.map(conversation => (
-    <div
-      key={conversation._id}
-      className="chatlist-user"
-      onClick={() => onSelectConversation(conversation)} // Call the callback function
-    >
-      <div className="chatlist-middle">
-        {conversation.participants
-          .filter(participant => participant._id !== authState.user._id)
-          .map(participant => (
-            <div 
-              key={participant._id} 
-              className="chatlist-participant"
-              onClick={() => onSelectConversation(conversation)} // Call the callback function
-            >
-              <div className="chatlist-user-img">
-                <img
-                  src={getProfileImageUrl(participant.profileImage)}
-                  alt={participant.username}
-                  onError={(e) => { e.target.src = '/uploads/profiles/profile.jpg'; }}
-                />
-              </div>
-              <div className="chatlist-user-content">
-                <p>{participant.username}</p>
-                <p>{conversation.lastMessage?.message || 'No messages yet'}</p>
-              </div>
-            </div>
-          ))}
+      <div className="chatlist-top">
+        <div className="chatlist-user-img">
+          <img
+            src={getProfileImageUrl(authState.user.profileImage)}
+            alt={authState.user.username}
+            onError={(e) => {
+              console.error("Error loading image for:", authState.user.username, "URL:", e.target.src);
+              e.target.src = '/uploads/profiles/profile.jpg'; // Fallback image
+            }}
+          />
+        </div>
+        <div className="chatlist-user-content">
+          <p className='chat-user-auth-name'>{authState.user.username}</p>
+        </div>
       </div>
+      {conversations.map(conversation => (
+        <div
+          key={conversation._id}
+          className={`chatlist-user ${selectedChatId === conversation._id ? 'selected-chat' : ''}`} // Add conditional class
+          onClick={() => {
+            setSelectedChatId(conversation._id); // Set selected chat ID
+            onSelectConversation(conversation); // Call parent function
+          }}
+        >
+          <div className="chatlist-middle">
+            {conversation.participants
+              .filter(participant => participant._id !== authState.user._id)
+              .map(participant => (
+                <div key={participant._id} className="chatlist-participant">
+                  <div className="chatlist-user-img">
+                    <img
+                      src={getProfileImageUrl(participant.profileImage)}
+                      alt={participant.username}
+                      onError={(e) => {
+                        console.error("Error loading image for participant:", participant.username, "URL:", e.target.src);
+                        e.target.src = '/uploads/profiles/profile.jpg'; // Fallback image
+                      }}
+                    />
+                  </div>
+                  <div className="chatlist-user-content">
+                    <p>{participant.username}</p>
+                    <p className='text-msg'>{conversation.lastMessage?.message || 'No messages yet'}</p>
+                  </div>
+                </div>
+              ))}
+          </div>
+        </div>
+      ))}
     </div>
-  ))}
-</div>
-
   );
 };
 

@@ -4,27 +4,31 @@
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.5.2",
-    "@fortawesome/free-brands-svg-icons": "^6.6.0",
-    "@fortawesome/free-solid-svg-icons": "^6.6.0",
+    "@fortawesome/free-brands-svg-icons": "^6.5.2",
+    "@fortawesome/free-solid-svg-icons": "^6.5.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
-    "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
+    "@react-google-maps/api": "^2.19.3",
     "ajv": "^8.16.0",
     "axios": "^1.7.2",
-    "frontend": "file:",
+    "date-fns": "^3.6.0",
+    "emoji-mart": "^5.6.0",
+    "emoji-picker-react": "^4.11.1",
     "jwt-decode": "^4.0.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-router-dom": "^6.24.0",
+    "react-google-autocomplete": "^2.7.3",
+    "react-modal": "^3.16.1",
+    "react-router-dom": "^6.26.0",
     "react-scripts": "5.0.1",
     "react-scroll": "^1.9.0",
+    "react-toastify": "^10.0.5",
+    "socket.io-client": "^4.8.0",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "jest",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -44,5 +48,18 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/core": "^7.26.7",
+    "@babel/preset-env": "^7.26.7",
+    "@babel/preset-react": "^7.26.3",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.2.0",
+    "@testing-library/user-event": "^14.6.1",
+    "babel-jest": "^29.7.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^27.5.1",
+    "jest-transform-stub": "^2.0.0",
+    "msw": "^2.7.0"
   }
 }

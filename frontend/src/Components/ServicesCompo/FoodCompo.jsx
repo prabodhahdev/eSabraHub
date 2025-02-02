@@ -2,6 +2,8 @@
 
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {  faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import { fetchServicesByType } from './Api';
 
@@ -38,27 +40,29 @@ const FoodCompo = () => {
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <div>
-      <h1>Accommodation Services</h1>
+    <div className='frontend-services'>
+      <h1>Food Shops</h1>
       {services.length > 0 ? (
-        <div className="services-list">
-          {services.map((service) => (
-            <div
-              key={service._id}
-              className="service-item"
-              onClick={() => handleServiceClick(service._id)}
-              style={{ cursor: 'pointer' }} // Optional: Add cursor pointer for better UX
-            >
-              <img
-                src={`http://localhost:5000/uploads/mainphotos/${service.mainPhoto}`}
-                alt={service.name}
-                className="service-main-photo"
-              />
-              <h2>{service.name}</h2>
-              <p>Location: {service.location}</p>
-            </div>
-          ))}
-        </div>
+         <div className="services-list">
+         {services.map((service) => (
+           <div className='service-list-gallery'>
+             <div
+             key={service._id}
+             className="service-item"
+             onClick={() => handleServiceClick(service._id)}
+             style={{ cursor: 'pointer' }} 
+           >
+             <img
+               src={`http://localhost:5000/uploads/mainphotos/${service.mainPhoto}`}
+               alt={service.name}
+               className="service-main-photo"
+             />
+             <h2>{service.name}</h2>
+             < p className='services-location-icon-for-all'> <FontAwesomeIcon icon={faMapMarkerAlt} /> {service.location}</p>
+             </div>
+           </div>
+         ))}
+       </div>
       ) : (
         <p>No accommodation services available.</p>
       )}

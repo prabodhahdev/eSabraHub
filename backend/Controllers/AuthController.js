@@ -54,6 +54,7 @@ exports.login = async (req, res) => {
     // Send response
     res.status(200).json({ token, user });
   } catch (error) {
+    
     res.status(400).json({ message: error.message });
   }
 };
@@ -79,6 +80,24 @@ exports.getUserDetails = async (req, res) => {
     res.status(500).json({ msg: 'Server error' });
   }
 };
+// Get user details by userId
+exports.getUserDetailsOther = async (req, res) => {
+  try {
+    const userId = req.params.userId; // Extract userId from the URL params
+    const user = await User.findById(userId); // Use the userId from params to fetch the user
+
+    if (!user) {
+      return res.status(404).json({ msg: 'User not found' });
+    }
+
+    // Return the user details
+    res.json(user);
+  } catch (error) {
+    console.error('Error fetching user details:', error);
+    res.status(500).json({ msg: 'Server error' });
+  }
+};
+
 
 exports.editUserDetails = async (req, res) => {
   try {

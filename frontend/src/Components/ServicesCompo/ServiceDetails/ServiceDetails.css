@@ -1,54 +1,116 @@
 /* src/components/ServiceDetails.css */
 
 .service-details {
-    max-width: 800px;
     margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-  }
-  
-  .service-details h1 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-    color: #333;
-  }
-  
-  .service-main-photo {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-  }
-  
-  .service-details p {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    color: #555;
-    margin-bottom: 10px;
-  }
-  
-  .extra-photos {
     margin-top: 20px;
+    padding: 20px;
+    border-radius: 8px;
+  }
+  .service-list-top{
+    display: flex;  
+
+  }.service-details-left-side {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 500px;
+    display: flex; 
+    justify-content: center; 
+    padding: 30px;
+  }
+  .service-details-left-side h1{
+    text-align: left;
+    font-size: 20px;
+    color: #dd7413;
+    font-weight: 700;
+    margin-bottom: 20px;
+  }
+  .service-details-left-side .service-main-photo {
+    max-width: 100%; 
+    height: 100%; 
+    object-fit: contain; 
+    border: none;
+    outline: none;
+    background-color: transparent;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); 
+
+
   }
   
-  .extra-photos h2 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-    color: #333;
+  .service-details-right-side{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .service-details-right-side .location-service{
+    color: green;
+    font-weight: 700;
+    font-size: 16px;
+    text-align: left;
+    font-style: italic;
+    padding-left: 30px;
+    display: flex;
+    align-items: center;
+  }
+
+  .service-list-display-location{
+    padding: 30px;
+
+  }
+  .service-details-heading{
+    color: rgba(118, 114, 114, 0.699);
+    font-size: 16px;
+  }
+
+  .extra-photos-bottom-part-service-details{
+    margin: 20px auto;
+    columns: 4; 
+    column-gap: 20px;
+    padding: 30px;
+  }
+  .extra-photos-bottom-part-service-details-secnd{
+    width: 100%;
+    margin-bottom: 40px;
+    break-inside: avoid;
+  }
+  .extra-photos-bottom-part-service-details-secnd img{
+    width: 500px;
+    border-radius: 15px; 
   }
   
-  .extra-photo {
-    max-width: 100px;
-    height: auto;
-    border-radius: 4px;
-    margin: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  .google-map-icon{
+    color: green;
+    margin-right: 20px;
+
   }
-  
-  .extra-photos img {
-    margin-right: 10px;
-    margin-bottom: 10px;
+  .service-details-description-frontend{
+    text-align: left;
+    padding-left: 30px;
+    padding-right: 30px;
   }
+
+  @media(max-width:800px){
+    .service-list-top{
+      flex-direction: column;
+    }
+  }
+
+  @media(max-width:700px){
+    .service-list-top{
+      flex-direction: column;
+    }
+    .extra-photos-bottom-part-service-details{
+      columns: 2; 
+    
+    }
+  }
+
+  @media(max-width:500px){
+   
+    .extra-photos-bottom-part-service-details{
+      columns: 1; 
+    
+    }
+  }
+

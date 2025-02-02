@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
+import './EditService.css';
+import LocationInput from '../Map/LocationInput';
+import { toast } from 'react-toastify';
 
 const EditService = () => {
-  const { id } = useParams(); // Get the ID from the route parameters
-  const navigate = useNavigate(); // Hook to programmatically navigate
+  const { id } = useParams(); 
+  const navigate = useNavigate(); 
   const [service, setService] = useState({
     name: '',
     location: '',
@@ -44,6 +47,10 @@ const EditService = () => {
     setExtraFiles([...e.target.files]);
   };
 
+  // Function to handle location selection
+  const handleLocationSelect = (location) => {
+    setService((prevService) => ({ ...prevService, location }));
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
@@ -60,22 +67,22 @@ const EditService = () => {
       await axios.put(`http://localhost:5000/api/service/${id}`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
-      alert('Service updated successfully');
+      toast.success("Services updated successfully")
       
-      // Update extra photos
       if (extraFiles.length > 0) {
         const extraPhotosData = new FormData();
         extraFiles.forEach((file) => {
           extraPhotosData.append('extraPhotos', file);
         });
 
+        console.log('Extra Photos Data:', extraPhotosData); // Log the FormData content
+
         await axios.put(`http://localhost:5000/api/extraphotos/${id}`, extraPhotosData, {
           headers: { 'Content-Type': 'multipart/form-data' }
         });
-        alert('Extra photos updated successfully');
+        toast.success("Photos Updated Successfully")
       }
       
-      // Navigate based on serviceType
       switch (service.serviceType) {
         case 'accommodation':
           navigate('/accommodation');
@@ -97,70 +104,73 @@ const EditService = () => {
           break;
       }
     } catch (error) {
-      console.error('Error updating service:', error);
-      alert('Error updating service');
+      console.error('Error updating service:', error.response ? error.response.data : error);
+      toast.error(error)
     }
-  };
+};
+
 
   if (loading) return <p>Loading...</p>;
-
   return (
-    <div>
+    <div className="edit-service-container">
       <h2>Edit Service</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Name:</label>
+      <form className="edit-service-form" onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label className="edit-service-label">Name:</label>
           <input
+            className="edit-service-input" 
             type="text"
             name="name"
             value={service.name}
             onChange={handleChange}
           />
         </div>
-        <div>
-          <label>Location:</label>
-          <input
-            type="text"
-            name="location"
-            value={service.location}
-            onChange={handleChange}
+        <div className="form-group">
+          <label className="edit-service-label">Location:</label>
+          <LocationInput 
+            onLocationSelect={handleLocationSelect} 
+            currentLocation={service.location} // Pass current location to the component
           />
         </div>
-        <div>
-          <label>Description:</label>
+        <div className="form-group">
+          <label className="edit-service-label">Description:</label>
           <textarea
+            className="edit-service-textarea" 
             name="description"
             value={service.description}
             onChange={handleChange}
           />
         </div>
-        <div>
-          <label>Service Type:</label>
+        <div className="form-group">
+          <label className="edit-service-label">Service Type:</label>
           <input
+            className="edit-service-input" 
             type="text"
             name="serviceType"
             value={service.serviceType}
             onChange={handleChange}
           />
         </div>
-        <div>
-          <label>Main Photo:</label>
+        <div className="form-group">
+          <label className="edit-service-label">Main Photo:</label>
           <input
+            className="edit-service-input" 
             type="file"
             accept="image/*"
             onChange={handleFileChange}
           />
         </div>
-        <div>
-          <label>Extra Photos:</label>
+        <div className="form-group">
+          <label className="edit-service-label">Extra Photos:</label>
           <input
+            className="edit-service-input" 
             type="file"
             accept="image/*"
             multiple
             onChange={handleExtraFileChange}
           />
         </div>
-        <button type="submit">Update Service</button>
+        <button className="edit-service-button" type="submit">Update Service</button> 
       </form>
     </div>
   );

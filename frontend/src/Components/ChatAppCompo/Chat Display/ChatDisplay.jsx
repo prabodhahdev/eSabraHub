@@ -1,12 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-import { useAuth } from '../../../Context/AuthContext'; // Adjust the path as needed
-import './ChatDisplay.css'
+import { useAuth } from '../../../Context/AuthContext';
+import './ChatDisplay.css';
+
 const ChatDisplay = ({ conversation, onSendMessage }) => {
   const { authState } = useAuth();
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(true);
+  
+  const messagesEndRef = useRef(null);
+  useEffect(()=>{
+    const fetchUsers=async()=>{
+
+    }
+  },[])
 
   useEffect(() => {
     const fetchMessages = async () => {
@@ -17,6 +25,7 @@ const ChatDisplay = ({ conversation, onSendMessage }) => {
           },
         });
         setMessages(response.data);
+        console.log(setMessage)
       } catch (error) {
         console.error('Failed to fetch messages:', error);
       } finally {
@@ -33,8 +42,8 @@ const ChatDisplay = ({ conversation, onSendMessage }) => {
     e.preventDefault();
     if (message.trim()) {
       try {
-        const senderId = authState.user._id; // Assuming userId is available in authState
-        const receiverId = conversation.participants.find(id => id !== senderId); // Assuming conversation contains participants' IDs
+        const senderId = authState.user._id; 
+        const receiverId = conversation.participants.find(id => id !== senderId); 
         
         const response = await axios.post('http://localhost:5000/api/chat/send', {
           senderId,
@@ -47,10 +56,9 @@ const ChatDisplay = ({ conversation, onSendMessage }) => {
           },
         });
 
-        // Update messages state locally
-        setMessages([...messages, response.data]);
+        console.log('Response from server:', response.data); // Debugging line
+        setMessages(prevMessages => [...prevMessages, response.data]);
         setMessage('');
-        // Notify parent component to update messages
         onSendMessage(response.data);
       } catch (error) {
         console.error('Failed to send message:', error);
@@ -58,12 +66,16 @@ const ChatDisplay = ({ conversation, onSendMessage }) => {
     }
   };
 
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages]);
+
   if (loading) {
     return <div>Loading...</div>;
   }
 
   return (
-    <div className="chat-display-container">
+    <div className="chat-display-container-chat">
       <div className="chat-messages">
         {messages.map((msg, index) => (
           <div
@@ -71,9 +83,12 @@ const ChatDisplay = ({ conversation, onSendMessage }) => {
             className={`chat-message ${msg.sender === authState.user._id ? 'sent' : 'received'}`}
           >
             <p>{msg.message}</p>
-          </div>
+            
+            <span className="time-stamp">{new Date(msg.createdAt).toLocaleTimeString()}</span> {/* Timestamp */}          </div>
         ))}
+        <div ref={messagesEndRef} />
       </div>
+
       <form className="chat-form" onSubmit={handleSendMessage}>
         <input
           type="text"

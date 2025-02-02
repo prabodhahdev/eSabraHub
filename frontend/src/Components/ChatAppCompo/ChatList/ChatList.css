@@ -1,33 +1,35 @@
 .chatlist-container {
     display: flex;
     flex-direction: column;
-    border-right: 1px solid #ccc;
+
 
 }
   
   .chatlist-top {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     padding: 10px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #cccccc3a;
   }
   
   .chatlist-user-img img {
     border-radius: 50%;
-    width: 50px;
-    height: 50px;
+    width: 75px;
+    height: 75px;
     object-fit: cover;
   }
   
-  .chatlist-user-content p {
-    margin: 0;
-    padding: 0;
-  }
   
+  .chat-user-auth-name{
+    color: rgba(255, 255, 255, 0.759);
+    font-size: 18px;
+    font-weight: 700;
+  }
   .chatlist-user {
     cursor: pointer;
-    border-bottom: 1px solid #ddd;
-    padding: 10px;
+    border-bottom: 1px solid #cccccc3a;
+    padding: 0px;
   }
   
   .chatlist-middle {
@@ -39,17 +41,52 @@
     display: flex;
     align-items: center;
     padding: 10px;
+    width: 100%;
+    cursor: pointer;
+  }
+  .chatlist-participant:hover{
+   background-color: #cccccc3a;
   }
   
   .chatlist-participant .chatlist-user-img img {
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     object-fit: cover;
   }
-  
+  .chatlist-participant .chatlist-user-content{
+    margin-left: 20px;
+  }
   .chatlist-participant .chatlist-user-content p {
     margin: 0;
     padding: 0;
+    color: #ffffffe8;
+    text-align: left;
+  }
+  .chatlist-participant .chatlist-user-content .text-msg{
+  color: #ffffff68;
+  font-size: 14px;
+  }
+
+  .chatlist-user.selected-chat {
+    background-color: #313030de; /* Light blue or any desired color */
+    border-left: 4px solid #dd7413; /* Optional: Add a border to highlight */
   }
   
+  @media(max-width:700px){
+    .chat-user-auth-name{
+      display: none;
+    }
+    .chatlist-participant .chatlist-user-content{
+      display: none;
+    }
+    .chatlist-top .chatlist-user-img img{
+      display: none;
+    }
+  }
+@media(max-width:500px){
+  .chatlist-participant .chatlist-user-img img{
+    width: 40px;
+    height: 40px;
+  }
+}

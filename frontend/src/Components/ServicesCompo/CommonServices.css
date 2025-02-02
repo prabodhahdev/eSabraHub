@@ -1,46 +1,81 @@
 /* General container styling */
+.frontend-services h1{
+  color: #dd7413;
+  text-align: center;
+  font-size: 20px;
+  margin: 20px auto;
+}
 .services-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px; /* Space between the service items */
-    justify-content: center; /* Center the items horizontally */
-    margin: 20px auto; /* Margin for spacing around the container */
+  width: 1400px;
+  margin: 20px auto;
+  columns: 4; 
+  column-gap: 20px; 
+}
+
+.service-list-gallery {
+  width: 100%;
+  margin-bottom: 40px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); 
+  break-inside: avoid; 
+}
+.service-item {
+  max-width: 100%; /* Ensure items do not exceed their container */
+  border-radius: 15px; /* Rounded corners for items */
+  padding-bottom: 20px;
+}
+.service-item:hover {
+  transform: scale(1.05); /* Scale effect */
+  background-color: #e47514ee;
+  transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease; 
+  h2{
+    color: #ffffff;
   }
-  
-  /* Individual service item styling */
-  .service-item {
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    width: 100%;
-    max-width: 350px; /* Fixed width for each item */
-    text-align: center; /* Center the text within the item */
+  p{
+    color: #ffffffe4;
   }
-  
-  /* Main photo styling */
-  .service-main-photo {
-    width: 100%;
-    height: 200px; /* Fixed height for consistency */
-    object-fit: cover; /* Ensures the image covers the area without distortion */
+}
+.services-location-icon-for-all{
+  color: green;
+}
+
+/* Main photo styling */
+.service-main-photo {
+  width: 100%; /* Full width of the item */
+  height: auto; /* Fixed height for consistency */
+  object-fit: cover; /* Ensures the image covers the area without distortion */
+}
+
+/* Text content styling */
+h2 {
+  font-size: 16px; /* Font size for headings */
+  margin: 10px 0; /* Margin around headings */
+  text-align: center;
+  color: #555;
+}
+
+p {
+  font-size: 0.9em; /* Font size for paragraphs */
+  margin: 5px 0; /* Margin around paragraphs */
+  color: #555; /* Color for text */
+  text-align: center;
+}
+
+/* Extra padding for larger screens */
+@media (max-width: 1200px) {
+  .services-list {
+    width: calc(100% - 40px); /* Corrected calc syntax */
+    columns: 3; /* Reduce columns to 3 */
   }
-  
-  /* Text content styling */
-  h2 {
-    font-size: 1.2em;
-    margin: 10px 0;
+}
+
+@media (max-width: 760px) {
+  .services-list {
+    columns: 2; /* Reduce columns to 2 */
   }
-  
-  p {
-    font-size: 0.9em;
-    margin: 5px 0;
-    color: #555;
+}
+
+@media (max-width: 480px) {
+  .services-list {
+    columns: 1; /* Single column for smaller screens */
   }
-  
-  /* Extra padding for larger screens */
-  @media (min-width: 768px) {
-    .service-item {
-      padding: 10px;
-    }
-  }
-  
+}

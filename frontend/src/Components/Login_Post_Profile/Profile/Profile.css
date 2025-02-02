@@ -1,5 +1,6 @@
 /* Modal Styles */
 .modal {
+
     position: absolute;
     display: flex;
     align-items: center;
@@ -234,3 +235,238 @@
     }
   }
   
+=======
+  position: absolute;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 80vh;
+  width: 560px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  z-index: 1001;
+}
+
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.75);
+  z-index: 1000;
+}
+
+.close-modal-button {
+  background: none;
+  border: none;
+  padding: 5px;
+  font-weight: 900;
+  color: #dd7413;
+  border-radius: 5px;
+  font-size: 15px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+.profile-image-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 15px;
+  cursor: pointer;
+}
+
+.modal-profile-image {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 10px;
+  border: 2px solid #dd7413;
+}
+
+.profilepage-container {
+  display: flex;
+  flex-direction: column;
+  margin:50px 0;
+  max-width: 600px;
+  border-radius: 15px;
+  padding: 15px;
+  border: 1px solid rgba(128, 128, 128, 0.178);
+  height: 85vh;
+  background: #ffffff;
+}
+
+.profilepage-container .profile-img-name-des {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.profilepage-container .profile-img-name-des h2 {
+  color: #151414;
+  font-size: 20px;
+  margin: 10px 0;
+}
+
+.profilepage-container .profile-img-name-des img {
+  width: 220px;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #dd7413;
+}
+
+.profile-address-pn p {
+  text-align: left;
+  font-size: 14px;
+  margin:20px  5px;
+  color: #333;
+}
+
+.profile-add-contact {
+  margin: 10px 0;
+}
+
+.top-profile {
+  display: flex;
+  flex-direction: column;
+}
+
+.top-profile button {
+  margin: 10px auto;
+  padding: 10px 25px;
+  outline: none;
+  border: none;
+  border-radius: 15px;
+  background-color: #dd7413;
+  color: aliceblue;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.top-profile button:hover {
+  background-color: #bb5e11;
+}
+
+.profileFontAswsomeicon {
+  color: #dd7413;
+  cursor: pointer;
+  margin-right: 15px;
+}
+
+.profileFontAswsomeicon-btn {
+  color: white;
+  margin-right: 15px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: white;
+  margin-right: 40px;
+  padding: 20px;
+}
+
+form input {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+form button {
+  padding: 10px;
+  background-color: #dd7413;
+  color: white;
+  border: none;
+  width: 200px;
+  margin: 0 auto;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+form button:hover {
+  background-color: #bb5e11;
+}
+
+.profile-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #dd7413;
+}
+
+.post-actions-icons-div .edit-icon{
+  color: #151414;
+  margin-right: 10px;
+  cursor: pointer;
+}
+.post-actions-icons-div .delete-icon{
+  color: tomato;
+  margin-right: 10px;
+  cursor: pointer;
+}
+@media(max-width:1000px){
+  .profilepage-container{
+    margin: 50px auto;
+  }
+  .profile-address-pn p{
+    text-align: center;
+  }
+}
+@media (max-width: 590px) {
+  .modal {
+    width: 90%; /* Make the modal responsive for smaller screens */
+    max-width: none; /* Remove the max-width to allow flexibility */
+    padding: 15px; /* Adjust padding for smaller screens */
+  }
+
+  .close-modal-button {
+    font-size: 12px; /* Adjust the button size for smaller screens */
+    top: 8px;
+    right: 8px;
+  }
+
+  .modal-profile-image {
+    width: 120px; /* Reduce image size */
+    height: 120px;
+  }
+
+  .profilepage-container {
+    margin: 20px 10px;
+    padding: 10px;
+    height: auto; /* Allow the height to adjust automatically */
+  }
+
+  .profilepage-container .profile-img-name-des img {
+    width: 180px; /* Adjust the profile image size */
+    height: 180px;
+  }
+
+  .profile-address-pn p {
+    font-size: 12px; /* Reduce font size */
+    text-align: center;
+  }
+
+  .top-profile button {
+    padding: 8px 20px; /* Adjust button padding */
+    font-size: 12px;
+  }
+}
+

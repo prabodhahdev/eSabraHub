@@ -13,7 +13,7 @@ const WhyUs = () => {
         <div className="aboutus-whyus-text-topic">
           <h1>WHY</h1><span>US</span>
         </div>
-        <p>We provide accurate local service information and a user-friendly 
+        <p className='whyus-p'>  We provide accurate local service information and a user-friendly 
           platform for a seamless experience. Stay connected through real-time 
           chat in a trusted community of verified users.Our dedicated team is always ready to 
           assist with any questions or concerns.</p>
