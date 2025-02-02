@@ -7,7 +7,7 @@ const ChatList = ({ onSelectConversation, newMessage }) => {
   const { authState } = useAuth();
   const [conversations, setConversations] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [selectedChatId, setSelectedChatId] = useState(null); // State for selected chat
+  const [selectedChatId, setSelectedChatId] = useState(null); 
 
   useEffect(() => {
     const fetchChatList = async () => {
@@ -17,7 +17,7 @@ const ChatList = ({ onSelectConversation, newMessage }) => {
             Authorization: `Bearer ${authState.token}`,
           },
         });
-        console.log("Conversations fetched:", response.data); // Log conversations data
+        console.log("Conversations fetched:", response.data); 
         setConversations(response.data);
       } catch (error) {
         console.error('Failed to fetch chat list:', error);
