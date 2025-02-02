@@ -54,8 +54,8 @@ const features = [
   },
   {
     icon: faBell,
-    title: 'AI-Powered Recommendations',
-    description: 'Provides personalized suggestions to users based on their preferences and activities.',
+    title: 'Real-Time Notifications',
+    description: 'Stay informed with instant notifications about important updates, events, and messages.',
     color: '#e74c3c', 
   },
 ];

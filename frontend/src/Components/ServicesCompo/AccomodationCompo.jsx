@@ -49,10 +49,7 @@ const AccommodationCompo = () => {
               key={service._id}
               className="service-item"
               onClick={() => handleServiceClick(service._id)}
-
-              style={{ cursor: 'pointer' }} // Optional: Add cursor pointer for better UX 
               style={{ cursor: 'pointer' }} 
-
             >
               <img
                 src={`http://localhost:5000/uploads/mainphotos/${service.mainPhoto}`}

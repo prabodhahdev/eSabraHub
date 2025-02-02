@@ -30,7 +30,6 @@ export const AuthProvider = ({ children }) => {
           setAuthState({ user: null, token: null });
         }
       }
-  
     };
 
     initializeAuth();
