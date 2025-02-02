@@ -153,7 +153,7 @@ test('allows login with valid credentials', async () => {
       <MemoryRouter>
         <AuthProvider>
           <Login />
-          <ToastContainer /> {/* Add ToastContainer to display toast messages */}
+          <ToastContainer /> 
         </AuthProvider>
       </MemoryRouter>
     );
