@@ -50,7 +50,7 @@ const MedicalCompo = () => {
               style={{ cursor: 'pointer' }} 
             >
               <img
-                src={`http://localhost:5000/uploads/mainphotos/${service.mainPhoto}`}
+                src={`http://localhost:5000/uploads/mainphotos/${service.mainPhoto}`} //Update images
                 alt={service.name}
                 className="service-main-photo"
               />
