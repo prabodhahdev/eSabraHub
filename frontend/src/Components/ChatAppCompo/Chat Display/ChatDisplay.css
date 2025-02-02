@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 100%; /* Ensure the container takes full height */
+  height: 100%; 
   padding: 10px;
   background: linear-gradient(to right, #151414 , #0604028d), url('../../../Assets/chat.jpg');
   background-size: cover;
