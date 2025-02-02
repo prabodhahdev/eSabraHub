@@ -301,4 +301,3 @@ const ProfileMiddle = () => {
 };
 
 export default ProfileMiddle
-
