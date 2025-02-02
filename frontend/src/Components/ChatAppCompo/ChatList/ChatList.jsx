@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useAuth } from '../../../Context/AuthContext'; // Adjust the path as needed
+import { useAuth } from '../../../Context/AuthContext'; 
 import './ChatList.css';
 
 const ChatList = ({ onSelectConversation, newMessage }) => {
