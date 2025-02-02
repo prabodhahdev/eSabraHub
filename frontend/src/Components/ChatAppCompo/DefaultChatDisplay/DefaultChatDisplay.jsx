@@ -1,5 +1,5 @@
 import React from 'react';
-import './DefaultChatPage.css'; // Ensure this CSS file is updated accordingly
+import './DefaultChatPage.css'; 
 
 const DefaultChatDisplay = () => {
   return (
