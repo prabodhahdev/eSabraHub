@@ -84,7 +84,7 @@ const ChatDisplay = ({ conversation, onSendMessage }) => {
           >
             <p>{msg.message}</p>
             
-            <span className="time-stamp">{new Date(msg.createdAt).toLocaleTimeString()}</span> {/* Timestamp */}          </div>
+            <span className="time-stamp">{new Date(msg.createdAt).toLocaleTimeString()}</span></div>
         ))}
         <div ref={messagesEndRef} />
       </div>
