@@ -69,8 +69,8 @@
   }
 
   .chatlist-user.selected-chat {
-    background-color: #313030de; /* Light blue or any desired color */
-    border-left: 4px solid #dd7413; /* Optional: Add a border to highlight */
+    background-color: #313030de;
+    border-left: 4px solid #dd7413;
   }
   
   @media(max-width:700px){
