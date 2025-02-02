@@ -56,7 +56,7 @@ const ChatDisplay = ({ conversation, onSendMessage }) => {
           },
         });
 
-        console.log('Response from server:', response.data); // Debugging line
+        console.log('Response from server:', response.data);
         setMessages(prevMessages => [...prevMessages, response.data]);
         setMessage('');
         onSendMessage(response.data);
