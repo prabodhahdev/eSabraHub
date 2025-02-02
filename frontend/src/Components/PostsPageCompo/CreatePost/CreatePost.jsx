@@ -1,11 +1,18 @@
+
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCamera, faVideo, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 import EmojiPicker from 'emoji-picker-react';
+import { useAuth } from '../../../Context/AuthContext'; 
+import axios from 'axios';
+import {toast} from 'react-toastify'
+import LocationInput from '../../Map/LocationInput'; 
+
 import { useAuth } from '../../../Context/AuthContext'; // Import the useAuth hook
 import axios from 'axios';
 import {toast} from 'react-toastify'
 import LocationInput from '../../Map/LocationInput'; // Import your LocationInput component
+
 import './CreatePost.css';
 
 const CreatePost = () => {
@@ -18,7 +25,11 @@ const CreatePost = () => {
   const [backgroundColor, setBackgroundColor] = useState('#ffffff');
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const [postType, setPostType] = useState('text');
+
+  const [showLocationInput, setShowLocationInput] = useState(false); 
+
   const [showLocationInput, setShowLocationInput] = useState(false); // State to control visibility of LocationInput
+
 
   const handleTextChange = (e) => {
     setText(e.target.value);
@@ -57,8 +68,13 @@ const CreatePost = () => {
   };
 
   const handleLocationSelect = (address, coordinates) => {
+
+    setLocation(address); 
+    setShowLocationInput(false); 
+
     setLocation(address); // Set the selected address
     setShowLocationInput(false); // Hide the location input map after selection
+
   };
 
   const handleSubmit = async (e) => {
@@ -186,7 +202,10 @@ const CreatePost = () => {
               </div>
             ))}
 
+
+
             {/* Display the selected location below the icons */}
+
             {location && (
               <div className="selected-location">
                 <p><FontAwesomeIcon icon={faMapMarkerAlt} ></FontAwesomeIcon> {location}</p>
@@ -198,6 +217,7 @@ const CreatePost = () => {
         {showLocationInput && (
           <LocationInput onLocationSelect={handleLocationSelect} /> 
         )}
+
 
         <button type="submit" className='createpost-btn'>Post</button>
       </form>
