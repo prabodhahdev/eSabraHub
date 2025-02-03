@@ -121,13 +121,13 @@
 }
 
 .like-icon {
-  color: #000; /* Default color for non-liked state */
+  color: #000; 
   cursor: pointer;
   transition: color 0.3s;
 }
 
 .like-icon.liked {
-  color: #c7690c; /* Color when liked */
+  color: #c7690c; 
 }
 
 .comment-icon, .share-icon {

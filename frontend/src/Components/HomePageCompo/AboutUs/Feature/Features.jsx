@@ -54,7 +54,7 @@ const features = [
   },
   {
     icon: faBell,
-    title: 'Real-Time Notifications',
+    title: 'AI Chat bot',
     description: 'Stay informed with instant notifications about important updates, events, and messages.',
     color: '#e74c3c', 
   },

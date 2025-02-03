@@ -203,8 +203,8 @@ const Posts = () => {
 
         {postType === 'media' && (
           <div className="media-gallery">
-            <p className="post-content">{caption}</p>
-            {renderMedia()}
+        <p className="post-content" style={{ fontSize: '16px' }}>{caption}</p>
+{renderMedia()}
           </div>
         )}
 
