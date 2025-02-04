@@ -17,8 +17,8 @@ exports.createMessage = async (req, res) => {
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: process.env.EMAIL_USER, // Your team's Gmail address
-        pass: process.env.EMAIL_PASS, // Your team's Gmail password or app-specific password
+        user: process.env.EMAIL_USER, 
+        pass: process.env.EMAIL_PASS, 
       },
       secure: true, // Use TLS
     });
@@ -34,7 +34,7 @@ exports.createMessage = async (req, res) => {
     // Email options for eSabraHub team
     const teamMailOptions = {
       from: process.env.EMAIL_USER,
-      to: process.env.EMAIL_USER, // Your team's email address to receive the user's form details
+      to: process.env.EMAIL_USER, // Oour team's email address to receive the user's form details
       subject: 'New Contact Us Message Received',
       text: `New message received from ${fullName} (${email}).\n\nMessage:\n\n${message}`,
     };

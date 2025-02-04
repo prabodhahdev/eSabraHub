@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { useAuth } from '../../../Context/AuthContext';
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
-
 import './Login.css';
+import { toast } from 'react-toastify'; // Import Toastify for notifications
 
 const Login = () => {
   const [isSignup, setIsSignup] = useState(false);
@@ -13,87 +12,62 @@ const Login = () => {
     password: '',
     confirmPassword: '',
   });
-  const [loading, setLoading] = useState(false); // Added loading state
+  const [passwordValid, setPasswordValid] = useState(true);
+  const [passwordTooShort, setPasswordTooShort] = useState(false);
   const { authState, login, signup } = useAuth();
   const navigate = useNavigate();
 
+  // Password validation pattern
+  const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+  
+  // Handle input changes
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
-  };
 
-  const validateEmail = (email) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Basic email validation regex
-    return emailRegex.test(email);
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true); // Start loading
-
-    try {
-      if (isSignup) {
-        if (formData.password !== formData.confirmPassword) {
-          toast.error("Passwords don't match");
-          setLoading(false); // Stop loading
-          return;
-        }
-        if (!validateEmail(formData.email)) {
-          toast.error("Invalid email format");
-          setLoading(false); // Stop loading
-          return;
-        }
-        await signup(formData.username, formData.email, formData.password);
-        toast.success("Signup successful");
-      } else {
-        if (!validateEmail(formData.email)) {
-          toast.error("Invalid email format");
-          setLoading(false); // Stop loading
-          return;
-        }
-        await login(formData.email, formData.password);
-        toast.success("Login successful");
-      }
-
-      // Log user details
-      console.log('User:', authState.user);
-      console.log('User Email:', authState.user?.email); // Optional chaining
-      console.log('User ID:', authState.user?.id);
-      console.log('Token:', authState.token);
-
-      // Reset form data after successful login or signup
-      setFormData({
-        username: '',
-        email: '',
-        password: '',
-        confirmPassword: '',
-      });
-      
-      navigate('/posts'); // Redirect to the /posts page after successful login or signup
-
-    } catch (error) {
-      toast.error(error.message || "Invalid Credentials"); // Display specific error message
-    } finally {
-      setLoading(false); // Stop loading regardless of success or failure
+    if (name === 'password') {
+      setPasswordValid(passwordPattern.test(value));
+      setPasswordTooShort(value.length < 8);
     }
   };
 
-  const setIsSignupFun = () => {
-    setIsSignup(true);
-    setFormData({
-      username: '',
-      email: '',
-      password: '',
-      confirmPassword: '',
-    });
-  };
+  // Handle form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  const setLogin = () => {
-    setIsSignup(false);
-    setFormData({
-      email: '',
-      password: '',
-    });
+    try {
+      if (isSignup) {
+        // Password confirmation check
+        if (formData.password !== formData.confirmPassword) {
+          alert("Passwords don't match");
+          return;
+        }
+        // Password validation check
+        if (!passwordValid) {
+          alert(
+            'Password must be at least 8 characters long and include a mix of uppercase and lowercase letters, numbers, and special characters.'
+          );
+          return;
+        }
+        // Call signup function with all required fields
+        await signup(
+          formData.username,
+          formData.email,
+          formData.password,
+          formData.confirmPassword
+        );
+        toast.success('Signup successful');
+      } else {
+        // Call login function
+        await login(formData.email, formData.password);
+        toast.success('Login successful');
+      }
+
+      // Navigate to posts page after successful login/signup
+      navigate('/posts');
+    } catch (error) {
+      toast.error('Invalid Credentials');
+    }
   };
 
   return (
@@ -126,6 +100,16 @@ const Login = () => {
           onChange={handleInputChange}
           required
         />
+        {passwordTooShort && (
+          <p className="password-message">
+            Password must be at least 8 characters long.
+          </p>
+        )}
+        {!passwordValid && !passwordTooShort && (
+          <p className="password-message">
+            Use a mix of uppercase and lowercase letters, numbers, and special characters.
+          </p>
+        )}
         {isSignup && (
           <input
             type="password"
@@ -136,19 +120,17 @@ const Login = () => {
             required
           />
         )}
-        <button type="submit" disabled={loading}>
-          {loading ? 'Loading...' : isSignup ? 'Sign Up' : 'Login'}
-        </button>
+        <button type="submit">{isSignup ? 'Sign Up' : 'Login'}</button>
         <div className="login-bottom-part">
           {isSignup ? (
             <p>
               Already have an account? 
-              <span onClick={setLogin}> Login here</span>
+              <span onClick={() => setIsSignup(false)}> Login here</span>
             </p>
           ) : (
             <p>
               Create an account? 
-              <span onClick={setIsSignupFun}> Click here</span>
+              <span onClick={() => setIsSignup(true)}> Click here</span>
             </p>
           )}
         </div>

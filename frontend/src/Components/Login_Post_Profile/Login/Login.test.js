@@ -1,10 +1,10 @@
 // update test code here
 
 import { render, fireEvent, screen, waitFor } from '@testing-library/react';
-import { AuthProvider } from '../../../Context/AuthContext'; // Adjust the import path
-import { ToastContainer } from 'react-toastify'; // For testing toast messages
-import { MemoryRouter } from 'react-router-dom'; // Import MemoryRouter for routing context
-import Login from './Login'; // Adjust the import path
+import { AuthProvider } from '../../../Context/AuthContext'; 
+import { ToastContainer } from 'react-toastify'; 
+import { MemoryRouter } from 'react-router-dom'; 
+import Login from './Login'; 
 import React from 'react';
 
 // Test case for showing error when passwords do not match during signup
@@ -13,13 +13,13 @@ test('shows error when passwords do not match during signup', async () => {
     <MemoryRouter>
       <AuthProvider>
         <Login />
-        <ToastContainer /> {/* Add ToastContainer to display toast messages */}
+        <ToastContainer /> 
       </AuthProvider>
     </MemoryRouter>
   );
 
   // Switch to signup form
-  fireEvent.click(screen.getByText('Click here')); // Click to go to signup form
+  fireEvent.click(screen.getByText('Click here')); 
 
   // Enter form data with passwords not matching
   fireEvent.change(screen.getByPlaceholderText('Username'), { target: { value: 'testuser' } });
@@ -42,13 +42,13 @@ test('shows error when email format is invalid during signup', async () => {
     <MemoryRouter>
       <AuthProvider>
         <Login />
-        <ToastContainer /> {/* Add ToastContainer to display toast messages */}
+        <ToastContainer /> 
       </AuthProvider>
     </MemoryRouter>
   );
 
   // Switch to signup form
-  fireEvent.click(screen.getByText('Click here')); // Click to go to signup form
+  fireEvent.click(screen.getByText('Click here')); 
 
   // Enter form data with invalid email
   fireEvent.change(screen.getByPlaceholderText('Username'), { target: { value: 'testuser' } });
