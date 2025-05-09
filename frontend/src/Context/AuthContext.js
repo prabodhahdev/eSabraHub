@@ -1,7 +1,6 @@
 // AuthContext.js
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import axios from 'axios';
-import { toast } from 'react-toastify'; // Import Toastify for notifications
 
 // Create the AuthContext
 const AuthContext = createContext();

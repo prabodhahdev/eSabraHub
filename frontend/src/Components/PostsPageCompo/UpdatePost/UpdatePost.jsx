@@ -74,7 +74,7 @@ const UpdatePost = ({ post, onClose, onSave = () => {} }) => {
     setVideos(files); // Replace the current videos with new ones
   };
 
-  const handleLocationChange = (e) => setLocation(e.target.value);
+  //const handleLocationChange = (e) => setLocation(e.target.value);
   const handleCaptionChange = (e) => setCaption(e.target.value);
   const handleBackgroundColorChange = (color) => setBackgroundColor(color);
 

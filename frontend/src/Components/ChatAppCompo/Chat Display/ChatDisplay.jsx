@@ -11,9 +11,7 @@ const ChatDisplay = ({ conversation, onSendMessage }) => {
   
   const messagesEndRef = useRef(null);
   useEffect(()=>{
-    const fetchUsers=async()=>{
 
-    }
   },[])
 
   useEffect(() => {

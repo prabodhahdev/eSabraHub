@@ -12,7 +12,7 @@ const Profile = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [loading, setLoading] = useState(true);
   const [userData, setUserData] = useState({
-    profileImage:'/uploads/profiles/profile.jpg', // Set default image initially
+    profileImage:'/uploads/profiles/profile.jpg', 
     username: '',
     description: '',
     email: '',

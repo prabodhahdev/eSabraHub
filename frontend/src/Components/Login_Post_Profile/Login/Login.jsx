@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useAuth } from '../../../Context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import './Login.css';
-import { toast } from 'react-toastify'; // Import Toastify for notifications
+import { toast } from 'react-toastify'; 
 
 const Login = () => {
   const [isSignup, setIsSignup] = useState(false);
@@ -14,7 +14,7 @@ const Login = () => {
   });
   const [passwordValid, setPasswordValid] = useState(true);
   const [passwordTooShort, setPasswordTooShort] = useState(false);
-  const { authState, login, signup } = useAuth();
+  const { login, signup } = useAuth();
   const navigate = useNavigate();
 
   // Password validation pattern

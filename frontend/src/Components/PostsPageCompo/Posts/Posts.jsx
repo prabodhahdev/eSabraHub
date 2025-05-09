@@ -119,15 +119,15 @@ const Posts = () => {
     }
   };
 
-  const handleNewPost = (newPost) => {
+  /*const handleNewPost = (newPost) => {
     setPosts(prevPosts => [newPost, ...prevPosts]); // Add the new post to the top
-  };
+  };*/
 
   const handleChat = async (userId, postId) => {
     try {
       // Step 1: Get or create a conversation for the given post
       const conversationResponse = await axios.get(`http://localhost:5000/api/chat/conversation/${postId}`);
-      const conversationId = conversationResponse.data._id;
+     // const conversationId = conversationResponse.data._id;
   
       // Step 2: Navigate to the chat page with the user ID
       navigate(`/chat/${userId}`);

@@ -2,7 +2,7 @@ import React, { useEffect, useState, useCallback } from 'react';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {toast} from 'react-toastify'
-import { faComment, faMessage, faMapMarkerAlt, faTrash, faEdit, faHeart } from '@fortawesome/free-solid-svg-icons';
+import {  faMapMarkerAlt, faTrash, faEdit, faHeart } from '@fortawesome/free-solid-svg-icons';
 import { useAuth } from '../../../Context/AuthContext';
 import UpdatePost from '../../../Components/PostsPageCompo/UpdatePost/UpdatePost';
 import Modal from 'react-modal';
@@ -114,7 +114,7 @@ const ProfileMiddle = () => {
     }
   }, [userData.profileImage]);
 
-
+/*
   const handleEditPost = async (updatedPost) => {
     try {
       const response = await axios.put(`http://localhost:5000/api/posts/${updatedPost._id}`, updatedPost, {
@@ -129,7 +129,7 @@ const ProfileMiddle = () => {
       console.error('Error updating post:', err);
     }
   };
-
+*/
   const handleDeletePost = async (postId) => {
     try {
       await axios.delete(`http://localhost:5000/api/posts/${postId}`, {
@@ -180,7 +180,7 @@ const ProfileMiddle = () => {
 
   const Post = ({ _id, postType, user, text, photos, videos, location, backgroundColor, likes, caption }) => {
     const userName = user?.username || 'Unknown User';
-    const userProfile = user?.profileImage || 'https://via.placeholder.com/50';
+    //const userProfile = user?.profileImage || 'https://via.placeholder.com/50';
 
     const likeCount = Array.isArray(likes) ? likes.length : likes;
     const isLiked = likedPosts[_id] || false;

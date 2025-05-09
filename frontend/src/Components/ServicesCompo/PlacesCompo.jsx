@@ -1,7 +1,6 @@
 // src/components/AccommodationCompo.js
 
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {  faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 import { fetchServicesByType } from './Api';
