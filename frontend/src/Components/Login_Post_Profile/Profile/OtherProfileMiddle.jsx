@@ -68,10 +68,15 @@ const OtherProfileMiddle = () => {
       setLoading(false);
     }
   };
-
+/*
   useEffect(() => {
     fetchUserData();
   }, [authState.token, userId]);
+  */
+ useEffect(() => {
+  fetchUserData();
+}, [fetchUserData, authState.token, userId]);
+
 
   const getProfileImageUrl = () => userData.profileImage
     ? `http://localhost:5000${userData.profileImage}`

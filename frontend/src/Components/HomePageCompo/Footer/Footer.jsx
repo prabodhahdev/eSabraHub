@@ -98,10 +98,10 @@ const Footer = () => {
         <div className="footer-social">
           <h3>Follow Us On</h3>
           <ul className="social-icons">
-            <li><a href=""> <div className="social-icons-div"><FontAwesomeIcon icon={faFacebookF} /></div></a></li>
-            <li><a href=""> <div className="social-icons-div"><FontAwesomeIcon icon={faInstagram} /></div></a></li>
-            <li><a href=""> <div className="social-icons-div"><FontAwesomeIcon icon={faLinkedin} /></div></a></li>
-            <li><a href=""> <div className="social-icons-div"><FontAwesomeIcon icon={faTwitter} /></div></a></li>
+            <li><a href="https://example.com/"> <div className="social-icons-div"><FontAwesomeIcon icon={faFacebookF} /></div></a></li>
+            <li><a href="https://example.com/"> <div className="social-icons-div"><FontAwesomeIcon icon={faInstagram} /></div></a></li>
+            <li><a href="https://example.com/"> <div className="social-icons-div"><FontAwesomeIcon icon={faLinkedin} /></div></a></li>
+            <li><a href="https://example.com/"> <div className="social-icons-div"><FontAwesomeIcon icon={faTwitter} /></div></a></li>
 
           </ul>
         </div>

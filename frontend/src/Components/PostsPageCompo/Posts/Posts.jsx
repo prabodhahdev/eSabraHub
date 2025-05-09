@@ -127,10 +127,11 @@ const Posts = () => {
     try {
       // Step 1: Get or create a conversation for the given post
       const conversationResponse = await axios.get(`http://localhost:5000/api/chat/conversation/${postId}`);
-     // const conversationId = conversationResponse.data._id;
+      const conversationId = conversationResponse.data._id;
   
       // Step 2: Navigate to the chat page with the user ID
-      navigate(`/chat/${userId}`);
+      //navigate(`/chat/${userId}`);
+      navigate(`/chat/${conversationId}`);
     } catch (err) {
       console.error('Error handling chat:', err);
     }

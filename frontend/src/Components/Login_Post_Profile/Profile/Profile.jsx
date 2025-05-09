@@ -127,7 +127,7 @@ const Profile = () => {
   };
 
   // Clean up URL.createObjectURL resources
-  useEffect(() => {
+  /*useEffect(() => {
     if (userData.profileImage instanceof File) {
       const objectURL = getProfileImageUrl();
       return () => {
@@ -135,7 +135,18 @@ const Profile = () => {
         URL.revokeObjectURL(objectURL);
       };
     }
-  }, [userData.profileImage]);
+  }, [userData.profileImage]); */
+  useEffect(() => {
+  if (userData.profileImage instanceof File) {
+    const objectURL = getProfileImageUrl();
+
+    return () => {
+      console.log('Revoking object URL:', objectURL);
+      URL.revokeObjectURL(objectURL);
+    };
+  }
+}, [userData.profileImage, getProfileImageUrl]);
+
 
   if (loading) {
     return <div>Loading...</div>; // Display a loading indicator while fetching data
