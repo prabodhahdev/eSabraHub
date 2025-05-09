@@ -20,7 +20,7 @@ exports.createMessage = async (req, res) => {
         user: process.env.EMAIL_USER, 
         pass: process.env.EMAIL_PASS, 
       },
-      secure: true, // Use TLS
+      secure: true, 
     });
 
     // Email options for user
