@@ -47,13 +47,9 @@ const OtherProfileMiddle = () => {
     } finally {
       setLoading(false);
     }
-  }, [userId, authState]);
+  }, [userId, authState.user._id]);
 
-  useEffect(() => {
-    fetchPosts();
-  }, [fetchPosts]);
-
-  const fetchUserData = async () => {
+  const fetchUserData = useCallback(async () => {
     try {
       const response = await axios.get(`http://localhost:5000/api/users/profile/${userId}`, {
         headers: { Authorization: `Bearer ${authState.token}` },
@@ -67,27 +63,29 @@ const OtherProfileMiddle = () => {
     } finally {
       setLoading(false);
     }
-  };
-/*
-  useEffect(() => {
-    fetchUserData();
   }, [authState.token, userId]);
-  */
- useEffect(() => {
-  fetchUserData();
-}, [fetchUserData, authState.token, userId]);
 
+  useEffect(() => {
+    fetchPosts();
+    fetchUserData();
+  }, [fetchPosts, fetchUserData]);
 
-  const getProfileImageUrl = () => userData.profileImage
-    ? `http://localhost:5000${userData.profileImage}`
-    : '/uploads/profiles/profile.jpg';
+  const getProfileImageUrl = useCallback(() => {
+    return userData.profileImage
+      ? `http://localhost:5000${userData.profileImage}`
+      : '/uploads/profiles/profile.jpg';
+  }, [userData.profileImage]);
 
   const likePost = async (postId) => {
     if (likedPosts[postId]) {
-      await axios.delete(`http://localhost:5000/api/posts/unlike/${postId}`, { headers: { Authorization: `Bearer ${authState.token}` } });
+      await axios.delete(`http://localhost:5000/api/posts/unlike/${postId}`, {
+        headers: { Authorization: `Bearer ${authState.token}` },
+      });
       setLikedPosts({ ...likedPosts, [postId]: false });
     } else {
-      await axios.post(`http://localhost:5000/api/posts/like/${postId}`, {}, { headers: { Authorization: `Bearer ${authState.token}` } });
+      await axios.post(`http://localhost:5000/api/posts/like/${postId}`, {}, {
+        headers: { Authorization: `Bearer ${authState.token}` },
+      });
       setLikedPosts({ ...likedPosts, [postId]: true });
     }
   };
@@ -177,15 +175,11 @@ const OtherProfileMiddle = () => {
         posts.map(post => (
           <Post
             key={post._id}
-            _id={post._id}
-            postType={post.postType}
+            {...post}
             user={post.user || {}}
-            text={post.text}
-            caption={post.caption}
             photos={post.photos || []}
             videos={post.videos || []}
             location={post.location || 'none'}
-            backgroundColor={post.backgroundColor}
             likes={post.likes || []}
           />
         ))

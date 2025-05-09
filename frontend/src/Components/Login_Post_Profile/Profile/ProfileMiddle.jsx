@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {toast} from 'react-toastify'
-import {  faMapMarkerAlt, faTrash, faEdit, faHeart } from '@fortawesome/free-solid-svg-icons';
+import { toast } from 'react-toastify';
+import { faMapMarkerAlt, faTrash, faEdit, faHeart } from '@fortawesome/free-solid-svg-icons';
 import { useAuth } from '../../../Context/AuthContext';
 import UpdatePost from '../../../Components/PostsPageCompo/UpdatePost/UpdatePost';
 import Modal from 'react-modal';
@@ -17,7 +17,7 @@ const ProfileMiddle = () => {
   const [editPost, setEditPost] = useState(null);
   const [likedPosts, setLikedPosts] = useState({});
   const [userData, setUserData] = useState({
-    profileImage:'/uploads/profiles/profile.jpg', // Set default image initially
+    profileImage: '/uploads/profiles/profile.jpg',
     username: '',
     description: '',
     email: '',
@@ -25,32 +25,26 @@ const ProfileMiddle = () => {
     contactNumber: '',
   });
 
+  // Fetch posts of authenticated user
   const fetchPosts = useCallback(async () => {
-    if (!authState || !authState.user) {
+    if (!authState?.user?._id) {
       setError('User is not authenticated');
       setLoading(false);
       return;
     }
 
-    const userId = authState.user._id;
-    if (!userId) {
-      setError('User ID is not available');
-      setLoading(false);
-      return;
-    }
-
     try {
-      const response = await axios.get(`http://localhost:5000/api/posts/user/${userId}`);
+      const response = await axios.get(`http://localhost:5000/api/posts/user/${authState.user._id}`);
       const sortedPosts = response.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-      
-      // Initialize likedPosts state
+
+      // Mark liked posts
       const initialLikedPosts = {};
-      response.data.forEach(post => {
-        initialLikedPosts[post._id] = post.likes.some(like => like.userId === authState.user._id); // Adjust user ID check as needed
+      sortedPosts.forEach(post => {
+        initialLikedPosts[post._id] = post.likes.some(like => like.userId === authState.user._id);
       });
-      setLikedPosts(initialLikedPosts);
 
       setPosts(sortedPosts);
+      setLikedPosts(initialLikedPosts);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -58,110 +52,79 @@ const ProfileMiddle = () => {
     }
   }, [authState]);
 
-  useEffect(() => {
-    fetchPosts();
-  }, [fetchPosts]);
+  // Fetch profile info
+  const fetchUserData = useCallback(async () => {
+    try {
+      const response = await axios.get('http://localhost:5000/api/users/profile', {
+        headers: {
+          Authorization: `Bearer ${authState.token}`,
+        },
+      });
 
-  
-  // Fetch user details on component mount
+      setUserData({
+        ...response.data,
+        profileImage: response.data.profileImage || '/uploads/profiles/profile.jpg',
+      });
+    } catch (error) {
+      console.error('Error fetching user data:', error);
+    } finally {
+      setLoading(false);
+    }
+  }, [authState.token]);
+
   useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        console.log('Fetching user data');
-        const response = await axios.get('http://localhost:5000/api/users/profile', {
-          headers: {
-            Authorization: `Bearer ${authState.token}`, // Use the token from AuthContext
-          },
-        });
-        console.log('User data fetched:', response.data);
-        setUserData({
-          ...response.data,
-          profileImage: response.data.profileImage || '/uploads/profiles/profile.jpg', // Set fallback image if not provided
-        });
-      } catch (error) {
-        console.error('Error fetching user data:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
     fetchUserData();
     fetchPosts();
-  }, [authState.token, fetchPosts]);
+  }, [fetchUserData, fetchPosts]);
 
-  // Construct the image URL based on the backend path
+  // Get profile image URL
   const getProfileImageUrl = () => {
     if (userData.profileImage instanceof File) {
-      const objectURL = URL.createObjectURL(userData.profileImage);
-      console.log('Generated object URL for file:', objectURL);
-      return objectURL;
+      return URL.createObjectURL(userData.profileImage);
     }
-
-    const imageUrl = userData.profileImage
-      ? `http://localhost:5000${userData.profileImage}`
-      : '/uploads/profiles/profile.jpg';
-    console.log('Using profile image URL:', imageUrl);
-    return imageUrl;
+    return `http://localhost:5000${userData.profileImage}`;
   };
 
-  // Clean up URL.createObjectURL resources
+  // Clean up object URL
   useEffect(() => {
+    let objectURL;
     if (userData.profileImage instanceof File) {
-      const objectURL = getProfileImageUrl();
-      return () => {
-        console.log('Revoking object URL:', objectURL);
-        URL.revokeObjectURL(objectURL);
-      };
+      objectURL = URL.createObjectURL(userData.profileImage);
     }
+    return () => {
+      if (objectURL) URL.revokeObjectURL(objectURL);
+    };
   }, [userData.profileImage]);
 
-/*
-  const handleEditPost = async (updatedPost) => {
-    try {
-      const response = await axios.put(`http://localhost:5000/api/posts/${updatedPost._id}`, updatedPost, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-          Authorization: `Bearer ${authState.token}`
-        }
-      });
-      setPosts(prevPosts => prevPosts.map(post => (post._id === updatedPost._id ? response.data : post)));
-      setEditPost(null);
-    } catch (err) {
-      console.error('Error updating post:', err);
-    }
-  };
-*/
+  // Delete post
   const handleDeletePost = async (postId) => {
     try {
       await axios.delete(`http://localhost:5000/api/posts/${postId}`, {
-        headers: { Authorization: `Bearer ${authState.token}` }
+        headers: { Authorization: `Bearer ${authState.token}` },
       });
-      setPosts(prevPosts => prevPosts.filter(post => post._id !== postId));
-      toast.success("Post Deleted")
+      setPosts(prev => prev.filter(post => post._id !== postId));
+      toast.success("Post Deleted");
     } catch (err) {
       console.error('Error deleting post:', err);
     }
   };
 
+  // Like/unlike post
   const handleLike = async (postId) => {
-    if (!postId) {
-      console.error('Post ID is missing');
-      return;
-    }
-
     try {
       const response = await axios.post(`http://localhost:5000/api/posts/${postId}/like`, {}, {
-        headers: { Authorization: `Bearer ${authState.token}` }
+        headers: { Authorization: `Bearer ${authState.token}` },
       });
+
       const updatedPost = response.data;
 
-      // Update the like status
-      setLikedPosts(prevLikedPosts => ({
-        ...prevLikedPosts,
-        [postId]: !prevLikedPosts[postId]
+      setLikedPosts(prev => ({
+        ...prev,
+        [postId]: !prev[postId],
       }));
 
-      setPosts(prevPosts =>
-        prevPosts.map(post =>
+      setPosts(prev =>
+        prev.map(post =>
           post._id === postId ? { ...post, likes: updatedPost.likes } : post
         )
       );
@@ -170,50 +133,25 @@ const ProfileMiddle = () => {
     }
   };
 
-  const openEditModal = (post) => {
-    setEditPost(post);
-  };
+  // Modal handlers
+  const openEditModal = (post) => setEditPost(post);
+  const closeEditModal = () => setEditPost(null);
 
-  const closeEditModal = () => {
-    setEditPost(null);
-  };
-
+  // Post component
   const Post = ({ _id, postType, user, text, photos, videos, location, backgroundColor, likes, caption }) => {
     const userName = user?.username || 'Unknown User';
-    //const userProfile = user?.profileImage || 'https://via.placeholder.com/50';
+    const likeCount = Array.isArray(likes) ? likes.length : 0;
+    const isLiked = likedPosts[_id];
 
-    const likeCount = Array.isArray(likes) ? likes.length : likes;
-    const isLiked = likedPosts[_id] || false;
-
-    const renderMedia = () => (
-      <>
-        {photos.length === 1 ? (
-          <img src={`http://localhost:5000/${photos[0]}`} alt="Post Media" className="media-image" />
-        ) : (
-          <div className="media-collage">
-            {photos.map((item, index) => (
-              <img key={index} src={`http://localhost:5000/${item}`} alt={`Post Media ${index}`} className="media-image" />
-            ))}
-          </div>
-        )}
-        {videos.map((video, index) => (
-          <video key={index} controls className="media-video">
-            <source src={`http://localhost:5000/${video}`} type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-        ))}
-      </>
-    );
-    
     return (
       <div className="post">
         <div className="post-header">
-        <img
-          src={ getProfileImageUrl() || '/uploads/profiles/profile.jpg'}
-          alt="Profile"
-          className="user-profile"
-        /> 
-                  <div className="user-info">
+          <img
+            src={getProfileImageUrl()}
+            alt="Profile"
+            className="user-profile"
+          />
+          <div className="user-info">
             <span className="user-name">{userName}</span>
           </div>
           {location && (
@@ -224,8 +162,6 @@ const ProfileMiddle = () => {
           )}
           <div className="post-actions-icons-div">
             <FontAwesomeIcon icon={faEdit} className="edit-icon" onClick={() => openEditModal({ _id, text, location, postType, photos, videos, caption })} />
-          </div>
-          <div className="post-actions-icons-div">
             <FontAwesomeIcon icon={faTrash} className="delete-icon" onClick={() => handleDeletePost(_id)} />
           </div>
         </div>
@@ -238,18 +174,27 @@ const ProfileMiddle = () => {
 
         {postType === 'media' && (
           <div className="media-gallery">
-            <p className='post-content'>{caption}</p>
-            {renderMedia()}
+            {caption && <p className='post-content'>{caption}</p>}
+            {photos.length > 0 && (
+              <div className={`media-${photos.length === 1 ? 'single' : 'collage'}`}>
+                {photos.map((photo, i) => (
+                  <img key={i} src={`http://localhost:5000/${photo}`} alt={`Media ${i}`} className="media-image" />
+                ))}
+              </div>
+            )}
+            {videos.map((video, i) => (
+              <video key={i} controls className="media-video">
+                <source src={`http://localhost:5000/${video}`} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            ))}
           </div>
         )}
 
         <div className="post-footer">
-          <div className="post-actions">
-            <div className="post-actions-icons-div" onClick={() => handleLike(_id)}>
-              <FontAwesomeIcon icon={faHeart} className={`like-icon ${isLiked ? 'liked' : ''}`} />
-              <span className="likes-count">{likeCount} Likes</span>
-            </div>
-          
+          <div className="post-actions-icons-div" onClick={() => handleLike(_id)}>
+            <FontAwesomeIcon icon={faHeart} className={`like-icon ${isLiked ? 'liked' : ''}`} />
+            <span className="likes-count">{likeCount} Likes</span>
           </div>
         </div>
       </div>
@@ -283,15 +228,11 @@ const ProfileMiddle = () => {
         posts.map(post => (
           <Post
             key={post._id}
-            _id={post._id}
-            postType={post.postType}
+            {...post}
             user={post.user || {}}
-            text={post.text}
-            caption={post.caption}
             photos={post.photos || []}
             videos={post.videos || []}
             location={post.location || 'none'}
-            backgroundColor={post.backgroundColor}
             likes={post.likes || []}
           />
         ))
@@ -300,4 +241,4 @@ const ProfileMiddle = () => {
   );
 };
 
-export default ProfileMiddle
+export default ProfileMiddle;
