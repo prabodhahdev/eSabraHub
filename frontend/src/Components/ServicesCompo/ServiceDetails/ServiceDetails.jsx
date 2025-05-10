@@ -26,7 +26,7 @@ const ServiceDetails = () => {
 
     const fetchServiceById = async (id) => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/service/${id}`);
+        const response = await axios.get(`https://esabrahub.onrender.com/api/service/${id}`);
         return response.data;
       } catch (error) {
         console.error('Error fetching service by ID:', error);
@@ -36,7 +36,7 @@ const ServiceDetails = () => {
 
     const fetchExtraPhotos = async (serviceId) => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/extraphotos/${serviceId}`);
+        const response = await axios.get(`https://esabrahub.onrender.com/api/extraphotos/${serviceId}`);
         return response.data.extraPhotos || [];
       } catch (error) {
         console.error('Error fetching extra photos:', error);
@@ -73,7 +73,7 @@ const ServiceDetails = () => {
             <div className="service-details-left-side">
               <h1>{service.name}</h1>
               <img
-                src={`http://localhost:5000/uploads/mainphotos/${service.mainPhoto}`}
+                src={`https://esabrahub.onrender.com/uploads/mainphotos/${service.mainPhoto}`}
                 alt={service.name}
                 className="service-main-photo"
               />
@@ -101,7 +101,7 @@ const ServiceDetails = () => {
                 {extraPhotos.map((photo, index) => (
                   <div key={index} className="extra-photos-bottom-part-service-details-secnd">
                     <img
-                      src={`http://localhost:5000/uploads/extrapics/${photo}`}
+                      src={`https://esabrahub.onrender.com/uploads/extrapics/${photo}`}
                       alt={`Extra ${index}`}
                       style={{ width: '100%', height: 'auto', margin: '5px' }}
                     />

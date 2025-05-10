@@ -17,7 +17,7 @@ const ChatDisplay = ({ conversation, onSendMessage }) => {
   useEffect(() => {
     const fetchMessages = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/chat/${conversation._id}/messages`, {
+        const response = await axios.get(`https://esabrahub.onrender.com/api/chat/${conversation._id}/messages`, {
           headers: {
             Authorization: `Bearer ${authState.token}`,
           },
@@ -43,7 +43,7 @@ const ChatDisplay = ({ conversation, onSendMessage }) => {
         const senderId = authState.user._id; 
         const receiverId = conversation.participants.find(id => id !== senderId); 
         
-        const response = await axios.post('http://localhost:5000/api/chat/send', {
+        const response = await axios.post('https://esabrahub.onrender.com/api/chat/send', {
           senderId,
           receiverId,
           message,

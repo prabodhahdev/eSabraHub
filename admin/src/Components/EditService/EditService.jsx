@@ -23,7 +23,7 @@ const EditService = () => {
   useEffect(() => {
     const fetchService = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/service/${id}`);
+        const response = await axios.get(`https://esabrahub.onrender.com/api/service/${id}`);
         setService(response.data);
         setLoading(false);
       } catch (error) {
@@ -64,7 +64,7 @@ const EditService = () => {
     }
 
     try {
-      await axios.put(`http://localhost:5000/api/service/${id}`, formData, {
+      await axios.put(`https://esabrahub.onrender.com/api/service/${id}`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
       toast.success("Services updated successfully")
@@ -77,7 +77,7 @@ const EditService = () => {
 
         console.log('Extra Photos Data:', extraPhotosData); // Log the FormData content
 
-        await axios.put(`http://localhost:5000/api/extraphotos/${id}`, extraPhotosData, {
+        await axios.put(`https://esabrahub.onrender.com/api/extraphotos/${id}`, extraPhotosData, {
           headers: { 'Content-Type': 'multipart/form-data' }
         });
         toast.success("Photos Updated Successfully")

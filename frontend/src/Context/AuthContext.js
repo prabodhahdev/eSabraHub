@@ -18,7 +18,7 @@ export const AuthProvider = ({ children }) => {
       const token = localStorage.getItem('token');
       if (token) {
         try {
-          const response = await axios.get('http://localhost:5000/api/users/verify', {
+          const response = await axios.get('https://esabrahub.onrender.com/api/users/verify', {
             headers: { Authorization: `Bearer ${token}` },
           });
           console.log("Token validation response:", response.data); // Log the response for debugging
@@ -46,7 +46,7 @@ export const AuthProvider = ({ children }) => {
   // Login method
   const login = async (email, password) => {
     try {
-      const response = await axios.post('http://localhost:5000/api/users/login', { email, password });
+      const response = await axios.post('https://esabrahub.onrender.com/api/users/login', { email, password });
       setAuthState({ user: response.data.user, token: response.data.token });
       localStorage.setItem('token', response.data.token);
       
@@ -59,7 +59,7 @@ export const AuthProvider = ({ children }) => {
   // Signup method
   const signup = async (username, email, password, confirmPassword) => {
     try {
-      const response = await axios.post('http://localhost:5000/api/users/signup', { username, email, password, confirmPassword });
+      const response = await axios.post('https://esabrahub.onrender.com/api/users/signup', { username, email, password, confirmPassword });
       setAuthState({ user: response.data.user, token: response.data.token });
       localStorage.setItem('token', response.data.token);
     } catch (error) {

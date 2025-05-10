@@ -21,7 +21,7 @@ const OthersProfile = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/users/profile/${userId}`);
+        const response = await axios.get(`https://esabrahub.onrender.com/api/users/profile/${userId}`);
         setUserData({
           ...response.data,
           profileImage: response.data.profileImage || '/uploads/profiles/profile.jpg', // Set fallback image if not provided
@@ -45,7 +45,7 @@ const OthersProfile = () => {
     }
 
     return userData.profileImage
-      ? `http://localhost:5000${userData.profileImage}`
+      ? `https://esabrahub.onrender.com${userData.profileImage}`
       : '/uploads/profiles/profile.jpg';
   };
 

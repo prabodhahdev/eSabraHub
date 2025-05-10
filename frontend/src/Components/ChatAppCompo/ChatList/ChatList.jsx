@@ -12,7 +12,7 @@ const ChatList = ({ onSelectConversation, newMessage }) => {
   useEffect(() => {
     const fetchChatList = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/chat/list', {
+        const response = await axios.get('https://esabrahub.onrender.com/api/chat/list', {
           headers: {
             Authorization: `Bearer ${authState.token}`,
           },
@@ -47,7 +47,7 @@ const ChatList = ({ onSelectConversation, newMessage }) => {
   }, [newMessage]);
 
   const getProfileImageUrl = (imagePath) => {
-    const url = imagePath ? `http://localhost:5000${imagePath}` : '/uploads/profiles/profile.jpg';
+    const url = imagePath ? `https://esabrahub.onrender.com${imagePath}` : '/uploads/profiles/profile.jpg';
     console.log("Generated Profile Image URL:", url); // Log the generated URL
     return url;
   };

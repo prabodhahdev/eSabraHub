@@ -37,7 +37,7 @@ const UpdatePost = ({ post, onClose, onSave = () => {} }) => {
   useEffect(() => {
     const newPhotoPreviews = photos.map(photo => {
       if (typeof photo === 'string') {
-        return `http://localhost:5000/${photo}`;
+        return `https://esabrahub.onrender.com/${photo}`;
       } else if (photo instanceof File) {
         return URL.createObjectURL(photo);
       }
@@ -46,7 +46,7 @@ const UpdatePost = ({ post, onClose, onSave = () => {} }) => {
 
     const newVideoPreviews = videos.map(video => {
       if (typeof video === 'string') {
-        return `http://localhost:5000/${video}`;
+        return `https://esabrahub.onrender.com/${video}`;
       } else if (video instanceof File) {
         return URL.createObjectURL(video);
       }
@@ -109,7 +109,7 @@ const UpdatePost = ({ post, onClose, onSave = () => {} }) => {
     videos.forEach(video => formData.append('videos', video));
   
     try {
-      const response = await axios.put(`http://localhost:5000/api/posts/${post._id}`, formData, {
+      const response = await axios.put(`https://esabrahub.onrender.com/api/posts/${post._id}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           Authorization: `Bearer ${authState.token}`

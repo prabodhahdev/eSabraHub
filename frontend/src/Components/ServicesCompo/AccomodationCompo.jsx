@@ -51,7 +51,7 @@ const AccommodationCompo = () => {
               style={{ cursor: 'pointer' }} 
             >
               <img
-                src={`http://localhost:5000/uploads/mainphotos/${service.mainPhoto}`}
+                src={`https://esabrahub.onrender.com/uploads/mainphotos/${service.mainPhoto}`}
                 alt={service.name}
                 className="service-main-photo"
               />

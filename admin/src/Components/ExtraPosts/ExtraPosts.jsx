@@ -24,7 +24,7 @@ const ExtraPhotos = ({ serviceId }) => {
         }
 
         try {
-            const response = await axios.post(`http://localhost:5000/api/extraphotos/extra/${serviceId}`, formData, {
+            const response = await axios.post(`https://esabrahub.onrender.com/api/extraphotos/extra/${serviceId}`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }

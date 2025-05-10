@@ -67,7 +67,7 @@ function Accommodation() {
                             <tr key={service._id}>
                                 <td>
                                     <img
-                                        src={`http://localhost:5000/uploads/mainphotos/${service.mainPhoto}`}
+                                        src={`https://esabrahub.onrender.com/uploads/mainphotos/${service.mainPhoto}`}
                                         alt={service.name}
                                         className="serviceImage"
                                     />
@@ -78,7 +78,7 @@ function Accommodation() {
                                             {service.extraPhotos.map((photo, index) => (
                                                 <img
                                                     key={index}
-                                                    src={`http://localhost:5000/uploads/extrapics/${photo}`}
+                                                    src={`https://esabrahub.onrender.com/uploads/extrapics/${photo}`}
                                                     alt={`Extra ${index}`}
                                                     className="extraPhotoImage"
                                                   

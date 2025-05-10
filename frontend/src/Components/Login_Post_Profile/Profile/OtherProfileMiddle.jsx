@@ -32,7 +32,7 @@ const OtherProfileMiddle = () => {
     }
 
     try {
-      const response = await axios.get(`http://localhost:5000/api/posts/user/${userId}`);
+      const response = await axios.get(`https://esabrahub.onrender.com/api/posts/user/${userId}`);
       const sortedPosts = response.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
       const initialLikedPosts = {};
@@ -51,7 +51,7 @@ const OtherProfileMiddle = () => {
 
   const fetchUserData = useCallback(async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/api/users/profile/${userId}`, {
+      const response = await axios.get(`https://esabrahub.onrender.com/api/users/profile/${userId}`, {
         headers: { Authorization: `Bearer ${authState.token}` },
       });
       setUserData({
@@ -72,18 +72,18 @@ const OtherProfileMiddle = () => {
 
   const getProfileImageUrl = useCallback(() => {
     return userData.profileImage
-      ? `http://localhost:5000${userData.profileImage}`
+      ? `https://esabrahub.onrender.com${userData.profileImage}`
       : '/uploads/profiles/profile.jpg';
   }, [userData.profileImage]);
 
   const likePost = async (postId) => {
     if (likedPosts[postId]) {
-      await axios.delete(`http://localhost:5000/api/posts/unlike/${postId}`, {
+      await axios.delete(`https://esabrahub.onrender.com/api/posts/unlike/${postId}`, {
         headers: { Authorization: `Bearer ${authState.token}` },
       });
       setLikedPosts({ ...likedPosts, [postId]: false });
     } else {
-      await axios.post(`http://localhost:5000/api/posts/like/${postId}`, {}, {
+      await axios.post(`https://esabrahub.onrender.com/api/posts/like/${postId}`, {}, {
         headers: { Authorization: `Bearer ${authState.token}` },
       });
       setLikedPosts({ ...likedPosts, [postId]: true });
@@ -103,7 +103,7 @@ const OtherProfileMiddle = () => {
           {photos.length > 0 && (
             <div className="media-collage">
               {photos.map((item, index) => (
-                <img key={index} src={`http://localhost:5000/${item}`} alt={`Post Media ${index}`} className="media-image" />
+                <img key={index} src={`https://esabrahub.onrender.com/${item}`} alt={`Post Media ${index}`} className="media-image" />
               ))}
             </div>
           )}
@@ -111,7 +111,7 @@ const OtherProfileMiddle = () => {
             <div className="media-video">
               {videos.map((video, index) => (
                 <video key={index} controls>
-                  <source src={`http://localhost:5000/${video}`} type="video/mp4" />
+                  <source src={`https://esabrahub.onrender.com/${video}`} type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
               ))}

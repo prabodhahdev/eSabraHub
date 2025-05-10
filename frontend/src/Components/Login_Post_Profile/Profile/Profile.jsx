@@ -37,7 +37,7 @@ const Profile = () => {
     const fetchUserData = async () => {
       try {
         console.log('Fetching user data');
-        const response = await axios.get('http://localhost:5000/api/users/profile', {
+        const response = await axios.get('https://esabrahub.onrender.com/api/users/profile', {
           headers: {
             Authorization: `Bearer ${authState.token}`,
           },
@@ -81,7 +81,7 @@ const Profile = () => {
       formData.append('contactNumber', userData.contactNumber);
 
       console.log('Submitting form data:', formData);
-      const response = await axios.put('http://localhost:5000/api/users/profile/edit', formData, {
+      const response = await axios.put('https://esabrahub.onrender.com/api/users/profile/edit', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           Authorization: `Bearer ${authState.token}`,
@@ -114,7 +114,7 @@ const Profile = () => {
     }
 
     const imageUrl = userData.profileImage
-      ? `http://localhost:5000${userData.profileImage}`
+      ? `https://esabrahub.onrender.com${userData.profileImage}`
       : '/uploads/profiles/profile.jpg';
     console.log('Using profile image URL:', imageUrl);
     return imageUrl;

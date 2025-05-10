@@ -59,7 +59,7 @@ const CreatePost = () => {
         }
     
         try {
-            const response = await axios.post('http://localhost:5000/api/service/create', data, {
+            const response = await axios.post('https://esabrahub.onrender.com/api/service/create', data, {
                 headers: { 'Content-Type': 'multipart/form-data' }
             });
     

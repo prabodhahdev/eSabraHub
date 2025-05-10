@@ -26,7 +26,7 @@ const Posts = () => {
   // Fetch posts
   const fetchPosts = useCallback(async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/posts');
+      const response = await axios.get('https://esabrahub.onrender.com/api/posts');
       const sortedPosts = response.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
       setPosts(sortedPosts);
 
@@ -46,7 +46,7 @@ const Posts = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/users/profile', {
+        const response = await axios.get('https://esabrahub.onrender.com/api/users/profile', {
           headers: { Authorization: `Bearer ${authState.token}` },
         });
         setUserData({
@@ -76,7 +76,7 @@ const Posts = () => {
 
   const handleLike = async (postId) => {
     try {
-      const response = await axios.post(`http://localhost:5000/api/posts/${postId}/like`);
+      const response = await axios.post(`https://esabrahub.onrender.com/api/posts/${postId}/like`);
       const updatedPost = response.data;
 
       setLikedPosts(prev => ({
@@ -94,7 +94,7 @@ const Posts = () => {
 
   const handleChat = async (userId, postId) => {
     try {
-      const conversationResponse = await axios.get(`http://localhost:5000/api/chat/conversation/${postId}`);
+      const conversationResponse = await axios.get(`https://esabrahub.onrender.com/api/chat/conversation/${postId}`);
       const conversationId = conversationResponse.data._id;
       navigate(`/chat/${conversationId}`);
     } catch (err) {
@@ -116,18 +116,18 @@ const Posts = () => {
       <>
         {photos.length > 0 && (
           photos.length === 1 ? (
-            <img src={`http://localhost:5000/${photos[0]}`} alt="Post" className="media-image" />
+            <img src={`https://esabrahub.onrender.com/${photos[0]}`} alt="Post" className="media-image" />
           ) : (
             <div className="media-collage">
               {photos.map((img, i) => (
-                <img key={i} src={`http://localhost:5000/${img}`} alt={`Post ${i}`} className="media-image" />
+                <img key={i} src={`https://esabrahub.onrender.com/${img}`} alt={`Post ${i}`} className="media-image" />
               ))}
             </div>
           )
         )}
         {videos.map((video, i) => (
           <video key={i} controls className="media-video">
-            <source src={`http://localhost:5000/${video}`} type="video/mp4" />
+            <source src={`https://esabrahub.onrender.com/${video}`} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         ))}
@@ -138,7 +138,7 @@ const Posts = () => {
       <div className="post">
         <div className="post-header">
           <img
-            src={`http://localhost:5000${userProfile}`}
+            src={`https://esabrahub.onrender.com${userProfile}`}
             alt="User"
             className="user-profile"
             onClick={() => handleProfileClick(user._id)}

@@ -34,7 +34,7 @@ const ProfileMiddle = () => {
     }
 
     try {
-      const response = await axios.get(`http://localhost:5000/api/posts/user/${authState.user._id}`);
+      const response = await axios.get(`https://esabrahub.onrender.com/api/posts/user/${authState.user._id}`);
       const sortedPosts = response.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
       // Mark liked posts
@@ -55,7 +55,7 @@ const ProfileMiddle = () => {
   // Fetch profile info
   const fetchUserData = useCallback(async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/users/profile', {
+      const response = await axios.get('https://esabrahub.onrender.com/api/users/profile', {
         headers: {
           Authorization: `Bearer ${authState.token}`,
         },
@@ -82,7 +82,7 @@ const ProfileMiddle = () => {
     if (userData.profileImage instanceof File) {
       return URL.createObjectURL(userData.profileImage);
     }
-    return `http://localhost:5000${userData.profileImage}`;
+    return `https://esabrahub.onrender.com${userData.profileImage}`;
   };
 
   // Clean up object URL
@@ -99,7 +99,7 @@ const ProfileMiddle = () => {
   // Delete post
   const handleDeletePost = async (postId) => {
     try {
-      await axios.delete(`http://localhost:5000/api/posts/${postId}`, {
+      await axios.delete(`https://esabrahub.onrender.com/api/posts/${postId}`, {
         headers: { Authorization: `Bearer ${authState.token}` },
       });
       setPosts(prev => prev.filter(post => post._id !== postId));
@@ -112,7 +112,7 @@ const ProfileMiddle = () => {
   // Like/unlike post
   const handleLike = async (postId) => {
     try {
-      const response = await axios.post(`http://localhost:5000/api/posts/${postId}/like`, {}, {
+      const response = await axios.post(`https://esabrahub.onrender.com/api/posts/${postId}/like`, {}, {
         headers: { Authorization: `Bearer ${authState.token}` },
       });
 
@@ -178,13 +178,13 @@ const ProfileMiddle = () => {
             {photos.length > 0 && (
               <div className={`media-${photos.length === 1 ? 'single' : 'collage'}`}>
                 {photos.map((photo, i) => (
-                  <img key={i} src={`http://localhost:5000/${photo}`} alt={`Media ${i}`} className="media-image" />
+                  <img key={i} src={`https://esabrahub.onrender.com/${photo}`} alt={`Media ${i}`} className="media-image" />
                 ))}
               </div>
             )}
             {videos.map((video, i) => (
               <video key={i} controls className="media-video">
-                <source src={`http://localhost:5000/${video}`} type="video/mp4" />
+                <source src={`https://esabrahub.onrender.com/${video}`} type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
             ))}

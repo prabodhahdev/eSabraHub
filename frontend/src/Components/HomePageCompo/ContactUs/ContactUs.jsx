@@ -18,7 +18,7 @@ const ContactUs = () => {
     setSuccess('');
 
     try {
-      const response = await axios.post('http://localhost:5000/api/contact/msgsent', {
+      const response = await axios.post('https://esabrahub.onrender.com/api/contact/msgsent', {
         fullName,
         email,
         message,
